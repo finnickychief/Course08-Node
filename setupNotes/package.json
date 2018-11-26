@@ -1,0 +1,18 @@
+{
+  "name": "setupNotes",
+  "version": "1.0.0",
+  "description": "",
+  "main": "http.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.18.0",
+    "cookie": "^0.3.1",
+    "debug": "^4.1.0",
+    "express": "^4.16.4"
+  }
+}
