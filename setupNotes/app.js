@@ -46,7 +46,10 @@ http
         })
         .catch(err => console.log(err));
     } else {
-      res.end('Your request could not be handled.');
+      fs.readFile('demo.html', (err, data) => {
+        res.write(data);
+        res.end();
+      });
     }
   })
   .listen(port, err =>
