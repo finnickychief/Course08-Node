@@ -11,9 +11,22 @@ http
     const method = req.method;
     const reqUrl = req.url;
 
+    const query = url.parse(reqUrl, true).query;
+
     console.log(`We've received a request!`);
 
-    if (method === 'POST' && reqUrl.startsWith('/writeFile')) {
+    if (method === 'GET' && reqUrl.startsWith('/readFile')) {
+      fs.readFile(query.fileName, (err, data) => {
+        res.writeHead(200, { 'Content-Type': 'text/html' });
+
+        let returnObj = { contents: JSON.parse(data.toString()) };
+        let returnString = JSON.stringify(returnObj);
+
+        res.write(returnString);
+
+        res.end();
+      });
+    } else if (method === 'POST' && reqUrl.startsWith('/writeFile')) {
       parseBody(req)
         .then(body => {
           body = JSON.parse(body);
@@ -23,7 +36,7 @@ http
           // First parameter is the name of the file
           // Second parameter is what you want to put into the file
           // Third parameter is a callback for instructions on what to do after the file is written
-          fs.writeFile('' + fileName, json, (err, data) => {
+          fs.writeFile(fileName, json, (err, data) => {
             if (err) throw err;
 
             console.log('Saved new file');
