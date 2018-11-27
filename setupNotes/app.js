@@ -15,7 +15,19 @@ http
 
     console.log(`We've received a request!`);
 
-    if (method === 'PUT' && reqUrl.startsWith('/appendFile')) {
+    if (method === 'DELETE' && reqUrl.startsWith('/deleteFile')) {
+      // Delete a file
+      parseBody(req).then(body => {
+        body = JSON.parse(body);
+        let { fileName } = body;
+
+        fs.unlink(fileName, (err, data) => {
+          if (err) throw err;
+          res.write('Successfully deleted file');
+          res.end();
+        });
+      });
+    } else if (method === 'PUT' && reqUrl.startsWith('/appendFile')) {
       // Add to end of file
       console.log('In PUT');
       parseBody(req).then(body => {
