@@ -15,7 +15,24 @@ http
 
     console.log(`We've received a request!`);
 
-    if (method === 'GET' && reqUrl.startsWith('/readFile')) {
+    if (method === 'PUT' && reqUrl.startsWith('/appendFile')) {
+      // Add to end of file
+      console.log('In PUT');
+      parseBody(req).then(body => {
+        body = JSON.parse(body);
+        let { fileName, newContent } = body;
+
+        // let fileName = body.fileName;
+        // let newContent = body.newContent;
+
+        fs.appendFile(fileName, newContent, (err, data) => {
+          if (err) console.log(err);
+          res.write('Success');
+          res.end();
+        });
+      });
+    } else if (method === 'GET' && reqUrl.startsWith('/readFile')) {
+      // Read a file
       fs.readFile(query.fileName, (err, data) => {
         res.writeHead(200, { 'Content-Type': 'text/html' });
 

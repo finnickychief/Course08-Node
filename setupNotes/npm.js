@@ -1,4 +1,9 @@
 /*
+  Node:
+    nodejs.org/api
+    w3schools.com/nodejs/default.asp
+
+
   NPM - Node Package Manager
     Bundled with Node - See video on Node creator's thoughts on it now.
 

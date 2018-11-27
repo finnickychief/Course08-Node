@@ -32,6 +32,8 @@
 
         Representational State Transfer
           A way to represent the state of a request
+          restfulapi.net
+          www.ics.uci.edu/~fielding/pubs/dissertation/rest_arch_style.html
 
       
 
