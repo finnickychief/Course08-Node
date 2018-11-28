@@ -5,6 +5,22 @@ const port = 4000;
 // Declare the new application: app is now our server
 const app = express();
 
+// This will apply a middleware that runs no matter what
+// When we provide 2 arguments(route and callback) it only happens on that specific route
+// When we provide only 1 argument(callback) it will be applied to ALL routes
+// The third parameter, next, is a reference to the next piece of middleware to run and express handles this for you
+app.use((req, res, next) => {
+  console.log(
+    'We are in the first piece of middleware, and the method is ' + req.method
+  );
+  next(); // Run the next piece of middleware
+});
+
+app.use((req, res, next) => {
+  console.log('In second middleware');
+  next();
+});
+
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 

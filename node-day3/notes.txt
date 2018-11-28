@@ -1,0 +1,9 @@
+Middleware:
+  A middle-man for your system to handle requests and responses
+  Treat middleware as a few extra steps to get the work you required done.
+
+  With routes, the routes you define are considered middleware as well, but are almost always the LAST step in the chain.
+
+The order for middleware is as follows:
+  Your applications run middleware from top to bottom
+  Each piece of middleware runs and then tells the next one to run
