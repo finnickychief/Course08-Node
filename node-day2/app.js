@@ -45,7 +45,7 @@ app.get('/search', (req, res) => {
 });
 
 // * will hit for ANY url, and is a way to handle invalid paths easily
-app.get('*', (req, res) => {
+app.use('*', (req, res) => {
   //res.send('Page does not exist, check your url.');
   // res.render will render the page back to the user
   res.render('error', { name: 'Jeff' });
