@@ -1,0 +1,12 @@
+Exercise:
+  Write a new application which fulfills the following tasks:
+    1: parses a body
+    2: finds the sum of an array that is located in the body - make this function middleware and attach it as a property to the request
+    Format:
+      {
+        "array": [1,2,3,4,5]
+      }
+    3: Responds with the sum
+      {
+        "sum": 15
+      }

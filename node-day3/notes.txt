@@ -7,3 +7,8 @@ Middleware:
 The order for middleware is as follows:
   Your applications run middleware from top to bottom
   Each piece of middleware runs and then tells the next one to run
+
+
+External Libraries:
+  Morgan: A logging tool for HTTP requests
+  body-parser: A middleware that makes incoming data from the body available on the request object as req.body

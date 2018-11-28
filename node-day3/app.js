@@ -1,9 +1,16 @@
 const express = require('express');
 const path = require('path');
+const morgan = require('morgan');
+const bodyParser = require('body-parser');
 
 const port = 4000;
 // Declare the new application: app is now our server
 const app = express();
+
+app.use(morgan('dev'));
+
+// Tell bodyParser to treat incoming data as json
+app.use(bodyParser.json());
 
 // This will apply a middleware that runs no matter what
 // When we provide 2 arguments(route and callback) it only happens on that specific route
@@ -17,9 +24,10 @@ app.use((req, res, next) => {
 });
 
 app.use((req, res, next) => {
-  console.log('In second middleware');
+  console.log('In second middleware, body is : ' + req.body);
   next();
 });
+// app.use(bodyParser.json()); // If we put our bodyParser here instead, it is not available in our second middleware because it runs afterwards
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
@@ -29,6 +37,7 @@ app.get('/', (req, res) => {
 });
 
 app.post('/', (req, res) => {
+  console.log(req.body);
   res.send('Hello world from POST on root path');
 });
 
@@ -50,7 +59,7 @@ app.get('/search', (req, res) => {
 });
 
 // * will hit for ANY url, and is a way to handle invalid paths easily
-app.get('*', (req, res) => {
+app.use('*', (req, res) => {
   res.render('error', { name: 'Jeff' });
 });
 
