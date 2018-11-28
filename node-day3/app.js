@@ -7,6 +7,18 @@ const port = 4000;
 // Declare the new application: app is now our server
 const app = express();
 
+const authors = {
+  stephenKing: ['It', 'The Shining', 'Carrie'],
+  neilGaiman: ['American Gods', 'Coraline', 'Good Omens'],
+  williamShakespeare: ['Romeo & Juliet', 'Othello', 'Tempest', 'Hamlet']
+};
+
+// Create a path that lists an authors books when you go to their 'profile' page
+
+// Step 1: Make sure you can get the correct book list off the URL
+// Step 2: Render a page with the unformatted book list
+// Step 3: Render a page with the book list as an HTML list
+
 app.use(morgan('dev'));
 
 // Tell bodyParser to treat incoming data as json
@@ -24,6 +36,7 @@ app.use((req, res, next) => {
 });
 
 app.use((req, res, next) => {
+  console.log(req.params.param); // The param is not parsed until we get to the route that uses them
   console.log('In second middleware, body is : ' + req.body);
   next();
 });
@@ -54,13 +67,30 @@ app.get('/search', (req, res) => {
       role
     });
   } else {
-    res.send('No query provided');
+    res.status(400).json({
+      error: 'Bad search query'
+    });
   }
+});
+
+app.get('/slug/:param/:param2', (req, res) => {
+  // let param = req.params.param; // param comes from the slug in the url. req.params holds all params within the url
+  // let param2 = req.params.param2;
+  // console.log(req.params);
+
+  let { param, param2 } = req.params;
+
+  let obj = {
+    param1: param,
+    param2: param2
+  };
+
+  res.json(obj);
 });
 
 // * will hit for ANY url, and is a way to handle invalid paths easily
 app.use('*', (req, res) => {
-  res.render('error', { name: 'Jeff' });
+  res.status(404).render('error', { name: 'Jeff' });
 });
 
 // Make our server listen on a port

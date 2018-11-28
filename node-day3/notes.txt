@@ -12,3 +12,25 @@ The order for middleware is as follows:
 External Libraries:
   Morgan: A logging tool for HTTP requests
   body-parser: A middleware that makes incoming data from the body available on the request object as req.body
+
+
+Responses in express:
+  By default, all responses give a status of 200(OK)
+  In express we can set status on a response with the .status() method
+
+  Along with response codes, it is common to nest a message or error key within your response object with more information
+
+
+
+Queries and Parameters:
+  Queries are stored at the end of a url after a question mark
+  They are separated by ampersands and given name/value pairs separated by equal signs
+
+  Parameters are inline with the path portion of a url
+  Also known as slugs, they are readable variables within your path
+
+  The structure on the backend is as follows:
+  /:userId
+  The part of the path you want to turn in to a variable is identified by a colon, and given a name directly after until it reaches another /
+  
+  We can access this variable in express using req.params.userId
