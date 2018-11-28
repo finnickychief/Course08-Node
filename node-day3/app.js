@@ -15,10 +15,6 @@ const authors = {
 
 // Create a path that lists an authors books when you go to their 'profile' page
 
-// Step 1: Make sure you can get the correct book list off the URL
-// Step 2: Render a page with the unformatted book list
-// Step 3: Render a page with the book list as an HTML list
-
 app.use(morgan('dev'));
 
 // Tell bodyParser to treat incoming data as json
@@ -44,6 +40,26 @@ app.use((req, res, next) => {
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
+
+// Step 1: Make sure you can get the correct book list off the URL
+// Step 2: Render a page with the unformatted book list
+// Step 3: Render a page with the book list as an HTML list
+// Use this route: /author/:authorName
+// postman url will look like /author/stephenKing
+
+app.get('/author/:authorName', (req, res) => {
+  let authorName = req.params.authorName;
+  let books = authors[authorName]; // Grab the books for the authorName we take in
+
+  if (books) {
+    let obj = { author: authorName, books: books };
+    // If books exists, render the template for the author
+    res.render('bookList', obj);
+  } else {
+    // If books does not exist, render 404
+    res.status(404).render('error', { name: 'Jeff' });
+  }
+});
 
 app.get('/', (req, res) => {
   res.send('Hello World from GET on root path');
