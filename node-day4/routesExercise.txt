@@ -6,6 +6,21 @@ Instructions for each link:
   Convert the query to a query object by hand
   Recreate the route in Express(use the routesApp.js), and have the route return the slugs/query objects as JSON
 
+https://twitter.com/dan_abramov/status/1067875748378288128
+  1 - /dan_abramov/status/1067875748378288128
+  2 - dan_abramov, 1067875748378288128
+  3 - No query, because there's no question mark
+  4 - 
+  {
+    username: dan_abramov,
+    statusId: 1067875748378288128
+  }
+  5 - No query
+  6
+
+
+
+
 
 https://www.youtube.com/user/1veritasium
 https://nodejs.org/api/path.html#path_path_join_paths

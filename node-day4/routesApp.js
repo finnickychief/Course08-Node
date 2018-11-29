@@ -13,6 +13,13 @@ app.use(bodyParser.json());
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
+// /dan_abramov/status/1067875748378288128
+app.get('/:username/status/:statusId', (req, res) => {
+  let { username, statusId } = req.params;
+
+  res.json({ username, statusId });
+});
+
 app.use('*', (req, res) => {
   res.status(404).json({ message: 'Route not found' });
 });
