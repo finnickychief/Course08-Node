@@ -1,0 +1,23 @@
+Instructions for each link:
+  Identify the full route
+  Identify any slugs(Use your best judgment when naming them, we can't tell what they actually are but we should provide a meaningful name to them)
+  Identify the query if it exists
+  Convert the slugs to a params object by hand
+  Convert the query to a query object by hand
+  Recreate the route in Express(use the routesApp.js), and have the route return the slugs/query objects as JSON
+
+
+https://www.youtube.com/user/1veritasium
+https://nodejs.org/api/path.html#path_path_join_paths
+https://en.wikipedia.org/wiki/Andorra
+https://www.youtube.com/user/TechGuyWeb/videos
+https://www.slack.com/messages/C8QA5LG7R/
+https://github.com/finnickychief?tab=repositories
+http://www.websiteexample.com/user/jtpwhat?question=who%20are%20you
+https://www.youtube.com/watch?v=BQGxEn9oWxc
+https://github.com/finnickychief/Course08-Node
+http://www.websiteexample.com/post/SJThFEwa8?line=8
+https://expressjs.com/en/guide/using-middleware.html
+localhost:4000/products/sports?search=LT&search=20
+https://www.google.com/search?source=hp&ei=0wAAXLHADK2d_Qbpjp_AAg&q=test+search&btnK=Google+Search&oq=test+search
+https://medium.com/s/the-upgrade/the-bogus-tech-deals-to-avoid-this-holiday-season-9ee01e1b40a2
