@@ -1,0 +1,148 @@
+https://www.youtube.com/user/1veritasium
+1 - /user/1veritasium
+2 - 1veritasium
+3 - No query
+4 - {
+  user: '1veritasium'
+}
+
+
+
+https://nodejs.org/api/path.html#path_path_join_paths
+1 - /api/path.html#path_path_join_paths
+2 - path.html
+3 - No query
+4 - {
+  page: 'path.html'
+}
+
+
+https://en.wikipedia.org/wiki/Andorra
+1 - /wiki/Andorra
+2 - Andorra
+3 - No query
+4 - {
+  subject: 'Andorra'
+}
+
+
+https://www.youtube.com/user/TechGuyWeb/videos
+1 - /user/TechGuyWeb/videos
+2 - TechGuyWeb
+3 - No query
+4 - {
+  user: 'TechGuyWeb'
+}
+
+
+https://www.slack.com/messages/C8QA5LG7R/
+1 - /messages/C8QA5LG7R/
+2 - C8QA5LG7R
+3 - No query
+4 - {
+  channel: 'C8QA5LG7R'
+}
+
+
+https://github.com/finnickychief?tab=repositories
+1 - /finnickychief?tab=repositories
+2 - finnickychief
+3 - tab=repositories
+4 - {
+  user: 'finnickychief'
+}
+5 - {
+  tab: 'respositories'
+}
+
+
+http://www.websiteexample.com/user/jtpwhat?question=who%20are%20you
+1 - /user/jtpwhat?question=who%20are%20you
+2 - jtpwhat
+3 - question=who%20are%20you
+4 - {
+  user: 'jtpwhat'
+}
+5 - {
+  question: 'who%20are%20you'
+}
+
+https://www.youtube.com/watch?v=BQGxEn9oWxc
+1 - /watch?v=BQGxEn9oWxc
+2 - No slug
+3 - v=BQGxEn9oWxc
+4 - {
+  v: 'BQGxEn9oWxc'
+}
+
+
+https://github.com/finnickychief/Course08-Node
+1 - /finnickychief/Course08-Node
+2 - finnickychief, Course08-Node
+3 - No query
+4 - {
+  user: 'finnickychief',
+  repo: 'Course08-Node
+}
+
+
+http://www.websiteexample.com/post/SJThFEwa8?line=8
+1 - /post/SJThFEwa8?line=8
+2 - SJThFEwa8
+3 - line=8
+4 - {
+  postId: 'SJThFEwa8'
+}
+5 - {
+  line: 8
+}
+
+
+https://expressjs.com/en/guide/using-middleware.html
+1 - /en/guide/using-middleware.html
+2 - en, using-middleware.html
+3 - no query
+4 - {
+  language: 'en',
+  page: 'using-middleware.html'
+}
+
+
+localhost:4000/products/sports?search=LT&search=20
+1 - /products/sports?search=LT&search=20
+2 - sports
+3 - search=LT&search=20
+4 - {
+  type: 'sports'
+}
+5 - {
+  search: [
+    'LT',
+    20
+  ]
+}
+
+
+https://www.google.com/search?source=hp&ei=0wAAXLHADK2d_Qbpjp_AAg&q=test+search&btnK=Google+Search&oq=test+search
+1 - /search?source=hp&ei=0wAAXLHADK2d_Qbpjp_AAg&q=test+search&btnK=Google+Search&oq=test+search
+2 - Probably no slugs
+3 - source=hp&ei=0wAAXLHADK2d_Qbpjp_AAg&q=test+search&btnK=Google+Search&oq=test+search
+4 - {
+  source= 'hp',
+  ei= '0wAAXLHADK2d_Qbpjp_AAg',
+  q= 'test+search',
+  btnK= 'Google+Search',
+  oq= 'test+search'
+}
+
+
+https://medium.com/s/the-upgrade/the-bogus-tech-deals-to-avoid-this-holiday-season-9ee01e1b40a2
+
+1 - /s/the-upgrade/the-bogus-tech-deals-to-avoid-this-holiday-season-9ee01e1b40a2
+
+2 - the-upgrade, the-bogus-tech-deals-to-avoid-this-holiday-season-9ee01e1b40a2
+3 - No query
+4 - {
+  username: 'the-upgrade',
+  article: 'the-bogus-tech-deals-to-avoid-this-holiday-season-9ee01e1b40a2'
+}
