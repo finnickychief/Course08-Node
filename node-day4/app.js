@@ -13,6 +13,17 @@ app.use(bodyParser.json());
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
+// Create a middleware that parses out the query of a url
+app.use((req, res, next) => {
+  let url = app.url;
+
+  next();
+});
+
+app.get('/', (req, res) => {
+  res.json(req.params2);
+});
+
 app.use('*', (req, res) => {
   res.status(404).json({ message: 'Route not found' });
 });
