@@ -1,0 +1,12 @@
+MongoDB:
+  Mongo is a NoSQL database(Not Only SQL)
+
+  
+  Groups of key:value pairs are stored as 'records' - In MySQL they are Rows
+  Collections of records are known as 'collections' - In MySQL they are tables
+
+https://blog.codecentric.de/files/2012/12/MongoDB-CheatSheet-v1_0.pdf
+https://vitalflux.com/mongodb-commands-cheat-sheet-beginners/
+https://gist.github.com/raineorshine/4649304
+
+
