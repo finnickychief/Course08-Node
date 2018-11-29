@@ -2,6 +2,7 @@ const express = require('express');
 const path = require('path');
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
+const { queryParam } = require('./middleware/middleware');
 
 const port = 4000;
 const app = express();
@@ -14,12 +15,7 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
 // Create a middleware that parses out the query of a url
-app.use((req, res, next) => {
-  let { url } = req;
-  // /?name=Jeff&role=Teacher
-  // { name: 'Jeff', role: 'Teacher' }
-  next();
-});
+app.use(queryParam);
 
 app.get('/', (req, res) => {
   res.json(req.query2);
