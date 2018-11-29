@@ -22,7 +22,7 @@ app.use((req, res, next) => {
 });
 
 app.get('/', (req, res) => {
-  res.json(req.params2);
+  res.json(req.query2);
 });
 
 app.use('*', (req, res) => {
