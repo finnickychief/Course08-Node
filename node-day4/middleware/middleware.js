@@ -21,7 +21,7 @@ function queryParam(req, res, next) {
     }
     req.query2 = queryObj;
   }
-
+  console.log('We just finished our query middleware');
   next();
 }
 
