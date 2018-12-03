@@ -1,0 +1,9 @@
+Mongoose Schema/Model exercise:
+
+Create 3 new routes to represents new pieces of data for our application:
+
+1 - Products
+2 - Animals
+3 - Teams
+
+Give thought about what each type of data should contain, and how to store/retrieve that data
