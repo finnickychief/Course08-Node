@@ -11,6 +11,56 @@ MongoDB:
     U - update in Mongo, findOneAndUpdate in mongoose
     D - remove in mongo, findOneAndRemove in mongoose
 
+  Terminal commands for mongod:
+    Running mongod(the server that hosts your connection)
+      ~/mongodb/bin/mongod when you installed manually
+      mongod if you installed with brew
+
+    Connecting to mongo
+      ~/mongodb/bin/mongo
+      mongo
+
+    Show current databases:
+      show databases
+      show dbs
+
+
+    Select/Create database
+      use {databaseName}
+
+    Show collections for current database:
+      show collections
+
+
+    Create record:
+      db.{collectionName}.insert({object})
+      db.puppies.insert({name:'Rex', breed:'australian shepherd'})
+      db.puppies.insert({name:'Peanut', breed:'Scottish Terrier'})
+      db.puppies.insert({name:'Walnut', breed:'australian shepherd'})
+      db.puppies.insert({name:'Bud', breed:'golden retriever', numMovies: 'lots'}) // Mongo does not care if the structure of records changes or is not matched with current data
+
+    Find all records:
+      db.{collectionName}.find();
+      db.puppies.find();
+
+    Find one record:
+      db.{collectionName}.findOne({queryObject});
+      db.puppies.findOne({name:'Rex'});
+
+    Find all records that match a query:
+      db.{collectionName}.find({queryObject});
+      db.puppies.find({breed:'australian shepherd'}).pretty();
+
+    Updating documents:
+      Updating works as a conjunction of both find and insert. It will look for a record that matches the query exactly, and update the properties found to match the updateObj
+      db.{collectionName}.update({queryObj}, {updateObj})
+      db.puppies.update({name:'Rex', breed:'australian shepherd'}, {name:'Rex', breed: 'dalmation'})
+
+
+    
+    
+
+
 https://blog.codecentric.de/files/2012/12/MongoDB-CheatSheet-v1_0.pdf
 https://vitalflux.com/mongodb-commands-cheat-sheet-beginners/
 https://gist.github.com/raineorshine/4649304
@@ -18,4 +68,7 @@ https://gist.github.com/raineorshine/4649304
 Installation instructions for mongo:
 https://treehouse.github.io/installation-guides/mac/mongo-mac.html
 
+
+https://www.mongodb.com/products/compass
+https://robomongo.org/
 
