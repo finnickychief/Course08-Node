@@ -52,9 +52,20 @@ MongoDB:
       db.puppies.find({breed:'australian shepherd'}).pretty();
 
     Updating documents:
-      Updating works as a conjunction of both find and insert. It will look for a record that matches the query exactly, and update the properties found to match the updateObj
+      Updating works as a conjunction of both find and insert. It will look for a record that matches the query exactly, and update the document found to match the updateObj
       db.{collectionName}.update({queryObj}, {updateObj})
       db.puppies.update({name:'Rex', breed:'australian shepherd'}, {name:'Rex', breed: 'dalmation'})
+
+    Removing documents:
+      Works more like find where it does not need a full match. It will remove all documents that fit your query
+      db.{collectionName}.remove({queryObj})
+      db.puppies.remove({name:'Bud'})
+
+    Remove an entire collection:
+      db.{collectionName}.drop()
+
+    Remove a database:
+      db.dropDatabase()
 
 
     
@@ -71,4 +82,5 @@ https://treehouse.github.io/installation-guides/mac/mongo-mac.html
 
 https://www.mongodb.com/products/compass
 https://robomongo.org/
+
 
