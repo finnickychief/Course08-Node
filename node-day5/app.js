@@ -36,7 +36,31 @@ app.get('/', (req, res) => {
   res.json({ message: 'success' });
 });
 
-app.post('/createUser', (req, res) => {
+app.get('/users/getUsers', (req, res) => {
+  let queryObj = {};
+
+  if (req.query.username) {
+    queryObj.username = req.query.username;
+  }
+
+  User.find(queryObj, (err, result) => {
+    if (err) {
+      res.status(400).json({
+        confirmation: 'Failure',
+        message: err
+      });
+    } else {
+      result = result.map(user => user.username);
+
+      res.json({
+        users: result,
+        confirmation: 'Success'
+      });
+    }
+  });
+});
+
+app.post('/users/createUser', (req, res) => {
   let { user } = req.body;
 
   User.create(user, (err, result) => {
