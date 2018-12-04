@@ -37,10 +37,19 @@ const AnimalSchema = new mongoose.Schema({
   habitat: { type: String, default: '' }
 });
 
+const TeamSchema = new mongoose.Schema({
+  name: { type: String, required: true, default: '' },
+  division: { type: String, required: true, default: 'Unorganized' },
+  hometown: { type: String, required: true },
+  mascot: { type: String },
+  colors: { type: Array }
+});
+
 // After you have your schema defined, you have to register it with mongoose so it knows what to look for. the first parameter is what you want the collection to be called in the database. The second is the schema you want to represent records within that collection
 const User = mongoose.model('users', UserSchema);
 const Product = mongoose.model('products', ProductSchema);
 const Animal = mongoose.model('animals', AnimalSchema);
+const Team = mongoose.model('teams', TeamSchema);
 
 const app = express();
 const port = 3000;
@@ -74,6 +83,28 @@ app.get('/users/getUsers', (req, res) => {
         confirmation: 'Success'
       });
     }
+  });
+});
+
+app.get('/products/getProducts', (req, res) => {
+  Product.find({}, (err, result) => {
+    res.json(
+      err ? { message: 'failed' } : { message: 'success', data: result }
+    );
+  });
+});
+app.get('/animals/getAnimals', (req, res) => {
+  Animal.find({}, (err, result) => {
+    res.json(
+      err ? { message: 'failed' } : { message: 'success', data: result }
+    );
+  });
+});
+app.get('/teams/getTeams', (req, res) => {
+  Team.find({}, (err, result) => {
+    res.json(
+      err ? { message: 'failed' } : { message: 'success', data: result }
+    );
   });
 });
 
@@ -120,6 +151,17 @@ app.post('/animals/createAnimal', (req, res) => {
         message: 'success'
       });
     }
+  });
+});
+
+app.post('/teams/createTeam', (req, res) => {
+  Team.create(req.body, (err, result) => {
+    res.json(err ? { message: 'failed' } : { message: 'success' });
+    // if (err) {
+    //   res.json({ message: 'Failed' });
+    // } else {
+    //   res.json({ message: 'Success' });
+    // }
   });
 });
 
