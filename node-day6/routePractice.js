@@ -3,6 +3,9 @@ const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const mongoose = require('mongoose');
 
+// Import routers
+const teamRouter = require('./routes/teams');
+
 // mongoose.connect takes 3 parameters: the url(including the database name), the options, and a callback for what should happen after it runs
 mongoose.connect(
   'mongodb://localhost:27017/test',
@@ -37,19 +40,10 @@ const AnimalSchema = new mongoose.Schema({
   habitat: { type: String, default: '' }
 });
 
-const TeamSchema = new mongoose.Schema({
-  name: { type: String, required: true, default: '' },
-  division: { type: String, required: true, default: 'Unorganized' },
-  hometown: { type: String, required: true },
-  mascot: { type: String },
-  colors: { type: Array }
-});
-
 // After you have your schema defined, you have to register it with mongoose so it knows what to look for. the first parameter is what you want the collection to be called in the database. The second is the schema you want to represent records within that collection
 const User = mongoose.model('users', UserSchema);
 const Product = mongoose.model('products', ProductSchema);
 const Animal = mongoose.model('animals', AnimalSchema);
-const Team = mongoose.model('teams', TeamSchema);
 
 const app = express();
 const port = 3000;
@@ -57,6 +51,8 @@ const port = 3000;
 // Register middleware
 app.use(bodyParser.json());
 app.use(morgan('dev'));
+
+app.use('/teams', teamRouter);
 
 app.get('/', (req, res) => {
   res.json({ message: 'success' });
@@ -95,13 +91,6 @@ app.get('/products/getProducts', (req, res) => {
 });
 app.get('/animals/getAnimals', (req, res) => {
   Animal.find({}, (err, result) => {
-    res.json(
-      err ? { message: 'failed' } : { message: 'success', data: result }
-    );
-  });
-});
-app.get('/teams/getTeams', (req, res) => {
-  Team.find({}, (err, result) => {
     res.json(
       err ? { message: 'failed' } : { message: 'success', data: result }
     );
@@ -151,12 +140,6 @@ app.post('/animals/createAnimal', (req, res) => {
         message: 'success'
       });
     }
-  });
-});
-
-app.post('/teams/createTeam', (req, res) => {
-  Team.create(req.body, (err, result) => {
-    res.json(err ? { message: 'failed' } : { message: 'success' });
   });
 });
 

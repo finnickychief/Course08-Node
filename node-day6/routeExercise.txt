@@ -1,0 +1,9 @@
+Exercise for routing:
+
+  Break out the 3 discrete pieces of the application left into their own routes.
+  By the end, your routePractice.js file should ONLY be the app.js setup and middleware related to the server
+
+  The three pieces are:
+    -Users
+    -Animals
+    -Products
