@@ -22,8 +22,25 @@ const UserSchema = new mongoose.Schema({
   password: { type: String, default: '', required: true }
 });
 
+const ProductSchema = new mongoose.Schema({
+  productname: { type: String, required: true, default: '' },
+  price: { type: Number, default: 0 },
+  category: { type: String, default: '' },
+  description: { type: String, default: '' },
+  quantity: { type: Number, default: 0 }
+});
+
+const AnimalSchema = new mongoose.Schema({
+  species: { type: String, required: true, default: '' },
+  numLegs: { type: Number, default: 0 },
+  englishName: { type: String, default: '' },
+  habitat: { type: String, default: '' }
+});
+
 // After you have your schema defined, you have to register it with mongoose so it knows what to look for. the first parameter is what you want the collection to be called in the database. The second is the schema you want to represent records within that collection
 const User = mongoose.model('users', UserSchema);
+const Product = mongoose.model('products', ProductSchema);
+const Animal = mongoose.model('animals', AnimalSchema);
 
 const app = express();
 const port = 3000;
@@ -73,6 +90,34 @@ app.post('/users/createUser', (req, res) => {
       res.json({
         data: result,
         confirmation: 'Success'
+      });
+    }
+  });
+});
+
+app.post('/products/createProduct', (req, res) => {
+  Product.create(req.body, (err, result) => {
+    if (err) {
+      res.json({
+        message: 'Failed'
+      });
+    } else {
+      res.json({
+        message: 'Success'
+      });
+    }
+  });
+});
+
+app.post('/animals/createAnimal', (req, res) => {
+  Animal.create(req.body, (err, result) => {
+    if (err) {
+      res.json({
+        message: 'failed'
+      });
+    } else {
+      res.json({
+        message: 'success'
       });
     }
   });
