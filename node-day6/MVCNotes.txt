@@ -1,0 +1,12 @@
+MVC: Model - View - Controller
+
+MVC is an architectural pattern which allows you to maintain structure within your applications.
+
+Model: 
+  The model is responsible for the structure and interaction with your data. This is most commonly through a database and a schema of some sort.
+
+View:
+  The View is responsible for the visual output of your data. It should contain no database interactions or application/business logic.
+
+Controller:
+  The controller ideally is the only place your logic is contained. It drives the interaction of your model, and returns data to your view.

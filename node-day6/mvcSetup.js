@@ -3,13 +3,9 @@ const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const mongoose = require('mongoose');
 
-// Import routers
-const teamRouter = require('./routes/teams');
-const userRouter = require('./routes/users');
-const productRouter = require('./routes/products');
-const animalRouter = require('./routes/animals');
+// Declare routes
+const quotesRouter = require('./routes/quotes');
 
-// mongoose.connect takes 3 parameters: the url(including the database name), the options, and a callback for what should happen after it runs
 mongoose.connect(
   'mongodb://localhost:27017/test',
   { useNewUrlParser: true },
@@ -21,7 +17,6 @@ mongoose.connect(
     console.log('MongoDB is connected');
   }
 );
-
 const app = express();
 const port = 3000;
 
@@ -29,14 +24,21 @@ const port = 3000;
 app.use(bodyParser.json());
 app.use(morgan('dev'));
 
-// Register routes
-app.use('/teams', teamRouter);
-app.use('/users', userRouter);
-app.use('/products', productRouter);
-app.use('/animals', animalRouter);
+const printQuotes = (req, res, next) => {
+  console.log('Before quotes router');
+  next();
+};
+
+app.use('/quotes', printQuotes, quotesRouter);
 
 app.get('/', (req, res) => {
   res.json({ message: 'success' });
+});
+
+app.get('*', (req, res) => {
+  res
+    .status(404)
+    .json({ message: 'Could not find the route you were looking for' });
 });
 
 app.listen(port, err => {
