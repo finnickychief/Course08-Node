@@ -1,17 +1,38 @@
 const express = require('express');
 const router = express.Router();
-
-// A router is a way to bundle up routes into an individual middleware that can be attached to your application(or other routers)
+const { addQuote, getQuotes } = require('../controllers/QuoteController');
 
 // Full route for this route is /quotes/getQuote
-router.get('/getQuote', (req, res) => {
-  console.log('In getQuote');
-  res.json({ quote: 'Knowledge is Power, France is Bacon' });
+router.get('/getQuotes', (req, res) => {
+  getQuotes()
+    .then(result => {
+      res.json({
+        message: 'Success',
+        data: result
+      });
+    })
+    .catch(err => {
+      res.status(400).json({
+        message: 'Failure',
+        error: err
+      });
+    });
 });
 
-router.get('/getQuote2', (req, res) => {
-  console.log('In getQuote2');
-  res.json({ quote: 'There are three things a wise man fears' });
+router.post('/addQuote', (req, res) => {
+  addQuote(req.body)
+    .then(result => {
+      res.json({
+        message: 'Success',
+        data: result
+      });
+    })
+    .catch(err => {
+      res.status(400).json({
+        message: 'Failure',
+        error: err
+      });
+    });
 });
 
 router.get('/*', (req, res) => {
