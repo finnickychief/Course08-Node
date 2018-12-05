@@ -3,10 +3,22 @@ const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
+const mongoose = require('mongoose');
 
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 
+mongoose.connect(
+  'mongodb://localhost:27017/test',
+  { useNewUrlParser: true },
+  err => {
+    if (err) {
+      console.log('Error: ', err);
+      return;
+    }
+    console.log('MongoDB is connected');
+  }
+);
 const app = express();
 
 // view engine setup
