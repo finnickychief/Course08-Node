@@ -1,0 +1,7 @@
+Convert the 3 remaining routes to use the MVC architecture
+
+Animals
+Products
+Users
+
+Additionally, add in a createdTimeStamp for each of these using Momentjs
