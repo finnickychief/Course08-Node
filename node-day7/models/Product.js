@@ -9,7 +9,7 @@ const ProductSchema = new mongoose.Schema({
   quantity: { type: Number, default: 0 },
   createdTimeStamp: {
     type: String,
-    default: moment().format('dddd, MMMM Do YYYY, h:mm:ss a')
+    default: () => moment().format('dddd, MMMM Do YYYY, h:mm:ss a')
   }
 });
 

@@ -1,36 +1,37 @@
 const express = require('express');
 const router = express.Router();
-const mongoose = require('mongoose');
-
-const AnimalSchema = new mongoose.Schema({
-  species: { type: String, required: true, default: '' },
-  numLegs: { type: Number, default: 0 },
-  englishName: { type: String, default: '' },
-  habitat: { type: String, default: '' }
-});
-
-const Animal = mongoose.model('animals', AnimalSchema);
+const AnimalController = require('../controllers/AnimalsController');
 
 router.get('/getAnimals', (req, res) => {
-  Animal.find({}, (err, result) => {
-    res.json(
-      err ? { message: 'failed' } : { message: 'success', data: result }
-    );
-  });
+  AnimalController.getAnimals()
+    .then(animals => {
+      res.json({
+        message: 'Successfully retrieved animals!',
+        data: animals
+      });
+    })
+    .catch(err => {
+      res.status(400).json({
+        message: 'Could not retrieve animals, see error',
+        error: err
+      });
+    });
 });
 
 router.post('/createAnimal', (req, res) => {
-  Animal.create(req.body, (err, result) => {
-    if (err) {
+  AnimalController.createAnimal(req.body)
+    .then(result => {
       res.json({
-        message: 'failed'
+        message: 'Successfully added animal!',
+        data: result
       });
-    } else {
-      res.json({
-        message: 'success'
+    })
+    .catch(err => {
+      res.status(400).json({
+        message: 'Could not add animal, see error',
+        error: data
       });
-    }
-  });
+    });
 });
 
 module.exports = router;

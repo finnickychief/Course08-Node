@@ -1,54 +1,37 @@
 const express = require('express');
 const router = express.Router();
-const mongoose = require('mongoose');
-
-const UserSchema = new mongoose.Schema({
-  username: { type: String, default: '', required: true, unique: true },
-  password: { type: String, default: '', required: true }
-});
-
-const User = mongoose.model('users', UserSchema);
+const UserController = require('../controllers/UserController');
 
 router.get('/getUsers', (req, res) => {
-  let queryObj = {};
-
-  if (req.query.username) {
-    queryObj.username = req.query.username;
-  }
-
-  User.find(queryObj, (err, result) => {
-    if (err) {
-      res.status(400).json({
-        confirmation: 'Failure',
-        message: err
-      });
-    } else {
-      result = result.map(user => user.username);
-
+  UserController.getUsers(req.query)
+    .then(users => {
       res.json({
-        users: result,
-        confirmation: 'Success'
+        message: 'Successfully retrieved users!',
+        data: users
       });
-    }
-  });
+    })
+    .catch(err => {
+      res.status(400).json({
+        message: 'Could not retrieve users, see error message',
+        error: err
+      });
+    });
 });
 
 router.post('/createUser', (req, res) => {
-  let { user } = req.body;
-
-  User.create(user, (err, result) => {
-    if (err) {
-      res.status(400).json({
-        message: err,
-        confirmation: 'Failure'
-      });
-    } else {
+  UserController.createUser(req.body)
+    .then(result => {
       res.json({
-        data: result,
-        confirmation: 'Success'
+        message: 'Successfully created user!',
+        data: result
       });
-    }
-  });
+    })
+    .catch(err => {
+      res.status(400).json({
+        message: 'Could not create user, see error message',
+        error: err
+      });
+    });
 });
 
 module.exports = router;

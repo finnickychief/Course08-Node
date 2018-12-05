@@ -12,7 +12,8 @@ const TeamSchema = new mongoose.Schema({
     type: String,
     // 'dddd, MMMM Do YYYY, h:mm:ss a'
     // 4d's - Full day(Wednesday), 4 M's full month(December), Do Date in month(5th),  4 Ys is full year (2018), h:mm:ss is clock time, a means am/pm
-    default: moment().format('dddd, MMMM Do YYYY, h:mm:ss a')
+    // This is a callback function because we want it to be run every time an item is added, not just the once when the server is started
+    default: () => moment().format('dddd, MMMM Do YYYY, h:mm:ss a')
   }
 });
 

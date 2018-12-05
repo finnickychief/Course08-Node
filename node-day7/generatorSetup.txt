@@ -1,0 +1,20 @@
+How to use express-generator:
+
+Install express-generator globally(use sudo if it doesn't work):
+  npm i -g express-generator
+
+To run it:
+  express --view=ejs {directoryName}
+  express --view=ejs nodeBoilerplate
+
+File structure and purpose:
+  app.js: Configuration for express server
+  routes folder: folder for routers
+  public: static assets folder
+  views: folder for rendered pages
+  bin/www: contains the process for running the server
+
+Added a script to package.json:
+  "dev": "nodemon ./bin/www"
+
+  To run this, type npm run dev. This will start your server in development mode
