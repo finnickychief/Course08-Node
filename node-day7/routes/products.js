@@ -1,37 +1,37 @@
 const express = require('express');
 const router = express.Router();
-const mongoose = require('mongoose');
-
-const ProductSchema = new mongoose.Schema({
-  productname: { type: String, required: true, default: '' },
-  price: { type: Number, default: 0 },
-  category: { type: String, default: '' },
-  description: { type: String, default: '' },
-  quantity: { type: Number, default: 0 }
-});
-
-const Product = mongoose.model('products', ProductSchema);
+const ProductController = require('../controllers/ProductController');
 
 router.get('/getProducts', (req, res) => {
-  Product.find({}, (err, result) => {
-    res.json(
-      err ? { message: 'failed' } : { message: 'success', data: result }
-    );
-  });
+  ProductController.getProducts()
+    .then(products => {
+      res.json({
+        message: 'Successfully retrieved products!',
+        data: products
+      });
+    })
+    .catch(err => {
+      res.json({
+        message: 'Could not retrieve products, see error',
+        error: err
+      });
+    });
 });
 
 router.post('/createProduct', (req, res) => {
-  Product.create(req.body, (err, result) => {
-    if (err) {
+  ProductController.createProduct(req.body)
+    .then(result => {
       res.json({
-        message: 'Failed'
+        message: 'Successfully created product!',
+        data: result
       });
-    } else {
+    })
+    .catch(err => {
       res.json({
-        message: 'Success'
+        message: 'Could not create product, see error message',
+        error: err
       });
-    }
-  });
+    });
 });
 
 module.exports = router;
