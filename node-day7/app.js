@@ -22,6 +22,7 @@ mongoose.connect(
   }
 );
 
+// Initialize app server
 const app = express();
 const port = 3000;
 
@@ -35,10 +36,12 @@ app.use('/users', userRouter);
 app.use('/products', productRouter);
 app.use('/animals', animalRouter);
 
+// Handle base route
 app.get('/', (req, res) => {
   res.json({ message: 'success' });
 });
 
+// Set server to listen on a port
 app.listen(port, err => {
   if (err) {
     console.log(err);

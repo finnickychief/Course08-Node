@@ -1,29 +1,37 @@
 const express = require('express');
 const router = express.Router();
-const mongoose = require('mongoose');
-
-const TeamSchema = new mongoose.Schema({
-  name: { type: String, required: true, default: '' },
-  division: { type: String, required: true, default: 'Unorganized' },
-  hometown: { type: String, required: true },
-  mascot: { type: String },
-  colors: { type: Array }
-});
-
-const Team = mongoose.model('teams', TeamSchema);
+const TeamController = require('../controllers/TeamController');
 
 router.get('/getTeams', (req, res) => {
-  Team.find({}, (err, result) => {
-    res.json(
-      err ? { message: 'failed' } : { message: 'success', data: result }
-    );
-  });
+  TeamController.getTeams()
+    .then(teams => {
+      res.json({
+        message: 'Successfully found results.',
+        data: teams
+      });
+    })
+    .catch(err => {
+      res.status(400).json({
+        message: 'Failure to find teams',
+        error: err
+      });
+    });
 });
 
 router.post('/createTeam', (req, res) => {
-  Team.create(req.body, (err, result) => {
-    res.json(err ? { message: 'failed' } : { message: 'success' });
-  });
+  TeamController.createTeam(req.body)
+    .then(result => {
+      res.json({
+        message: 'Succesfully added team!',
+        data: result
+      });
+    })
+    .catch(err => {
+      res.status(400).json({
+        message: 'Could not create team! Check error',
+        error: err
+      });
+    });
 });
 
 module.exports = router;
