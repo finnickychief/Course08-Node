@@ -18,3 +18,13 @@ Added a script to package.json:
   "dev": "nodemon ./bin/www"
 
   To run this, type npm run dev. This will start your server in development mode
+
+
+  Instructions for exercise:
+    Make out boilerplate work with our User MVC setup from today's folder. Additionally, make the /users/getUser (a new route, different from /users/getUsers) route display the username on an HTML page
+
+    1 - Connect to mongoDB
+    2 - Copy the files
+    3 - Register the route
+    4 - Test the functionality
+    5 - Render the username
