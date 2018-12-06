@@ -8,6 +8,12 @@
     <% include partials/navbar %>
 
     <div class="container w-50 mt-5 p-4 rounded border border-dark">
+      <% if(failure){ %>
+      <div class="alert alert-danger">
+        Please try another username, that one is taken.
+      </div>
+      <% } %>
+
       <form method="POST" action="/users/createUser">
         <div class="form-group">
           <label for="username">Username</label>
@@ -16,6 +22,7 @@
             class="form-control"
             id="username"
             placeholder="Enter Username"
+            name="username"
           />
         </div>
         <div class="form-group">
@@ -24,7 +31,8 @@
             type="password"
             class="form-control"
             id="password"
-            placeholder="Password"
+            placeholder="Enter Password"
+            name="password"
           />
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>

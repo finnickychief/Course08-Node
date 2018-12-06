@@ -39,17 +39,14 @@ router.get('/:username', (req, res, next) => {
 });
 
 router.post('/createUser', (req, res) => {
+  console.log(req.body);
   UserController.createUser(req.body)
     .then(result => {
-      res.json({
-        message: 'Successfully created user!',
-        data: result
-      });
+      res.render('registered');
     })
     .catch(err => {
-      res.status(400).json({
-        message: 'Could not create user, see error message',
-        error: err
+      res.status(400).render('signup', {
+        failure: true
       });
     });
 });

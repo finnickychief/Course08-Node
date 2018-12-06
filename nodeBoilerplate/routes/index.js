@@ -11,7 +11,7 @@ router.post('/', (req, res) => {
 });
 
 router.get('/signup', (req, res) => {
-  res.render('signup');
+  res.render('signup', { failure: false });
 });
 
 module.exports = router;
