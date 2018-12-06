@@ -12,10 +12,6 @@
 
       <% if(locals.failure){ %>
       <div class="alert alert-danger">Invalid Username/Password input</div>
-      <script>
-        // Replace the url in the window when we come back from /users/createUser
-        history.pushState(null, '', '/signup');
-      </script>
       <% } %>
 
       <form method="POST" action="">

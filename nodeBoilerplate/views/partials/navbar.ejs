@@ -11,9 +11,14 @@
         >
       </li>
     </ul>
+
     <ul class="navbar-nav">
+      <% if(locals.signedIn) { %>
+      <li class="nav-item"><a href="/signout" class="nav-link">Sign Out</a></li>
+      <% } else { %>
       <li class="nav-item"><a class="nav-link" href="/signin">Sign In</a></li>
       <li class="nav-item"><a class="nav-link" href="/signup">Sign Up</a></li>
+      <% } %>
     </ul>
   </div>
 </nav>
