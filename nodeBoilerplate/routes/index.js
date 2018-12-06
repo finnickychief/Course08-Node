@@ -10,4 +10,8 @@ router.post('/', (req, res) => {
   res.render('index', { title: req.body.username });
 });
 
+router.get('/signup', (req, res) => {
+  res.render('signup');
+});
+
 module.exports = router;
