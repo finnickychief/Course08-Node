@@ -22,7 +22,9 @@ router.get('/:username', (req, res, next) => {
   UserController.getUsers({ username: req.params.username })
     .then(user => {
       if (user.length === 0) {
-        res.render('nouser', {});
+        res.render('errorPage', {
+          message: 'Could not find the user you submitted.'
+        });
       } else {
         res.render('user', {
           username: user[0].username
