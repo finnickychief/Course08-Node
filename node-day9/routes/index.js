@@ -2,8 +2,11 @@ const express = require('express');
 const router = express.Router();
 const UserController = require('../controllers/UserController');
 
+const { checkSignIn } = require('../middleware/auth');
+
 /* GET home page. */
-router.get('/', (req, res, next) => {
+// With the middleware, you will go to the index page if you're signed in, or the signin page if you are not.
+router.get('/', checkSignIn, (req, res, next) => {
   res.render('index', { title: 'Express' });
 });
 
@@ -23,7 +26,7 @@ router.get('/signin', (req, res) => {
   }
 });
 
-router.post('/destroySignin', (req, res) => {
+router.get('/destroySignin', (req, res) => {
   req.session.username = undefined;
   res.json({ message: 'succesfully cleared user' });
 });
