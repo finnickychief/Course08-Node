@@ -25,10 +25,7 @@ router.get('/createProduct', (req, res) => {
 router.post('/createProduct', (req, res) => {
   ProductController.createProduct(req.body)
     .then(result => {
-      res.json({
-        message: 'Successfully created product!',
-        data: result
-      });
+      res.render('addedProduct');
     })
     .catch(err => {
       res.json({

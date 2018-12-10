@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Successfully added Product!</title>
+    <% include partials/head-tags %>
+  </head>
+  <body>
+    <% include partials/navbar %>
+    <div class="container w-50 mt-5">
+      <h1>
+        Product Succesfully added! Redirecting you to back to the product form
+        in 3 seconds.
+      </h1>
+    </div>
+
+    <script>
+      setTimeout(() => {
+        window.location.href = '/products/createProduct';
+      }, 3000);
+    </script>
+  </body>
+</html>
