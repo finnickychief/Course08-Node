@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Add Product</title>
+    <% include partials/head-tags %>
+  </head>
+  <body>
+    <% include partials/navbar %>
+
+    <div class="container w-50 mt-5 p-4 rounded border border-dark">
+      <h3 class="text-center">Add a Product</h3>
+
+      <% if(locals.failure){ %>
+      <div class="alert alert-danger"></div>
+      <% } %>
+
+      <form method="POST" action="">
+        <div class="form-group">
+          <label for="productname">Product Name</label>
+          <input
+            type="text"
+            class="form-control"
+            id="productname"
+            placeholder="Enter Product Name"
+            name="productname"
+          />
+        </div>
+        <div class="form-group">
+          <label for="price">Price</label>
+          <input
+            type="number"
+            class="form-control"
+            id="price"
+            placeholder="Enter Price"
+            name="price"
+          />
+        </div>
+        <div class="form-group">
+          <label for="category">Category</label>
+          <input
+            type="text"
+            class="form-control"
+            id="category"
+            placeholder="Enter Category"
+            name="category"
+          />
+        </div>
+        <div class="form-group">
+          <label for="description">Description</label>
+          <textarea
+            class="form-control"
+            id="description"
+            placeholder="Enter Description"
+            name="description"
+          ></textarea>
+        </div>
+        <div class="form-group">
+          <label for="quantity">Quantity</label>
+          <input
+            type="number"
+            class="form-control"
+            id="quantity"
+            placeholder="Enter Quantity"
+            name="quantity"
+            min="0"
+          />
+        </div>
+
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+    </div>
+  </body>
+</html>
