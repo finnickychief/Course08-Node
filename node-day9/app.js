@@ -1,5 +1,6 @@
 const createError = require('http-errors');
 const express = require('express');
+const session = require('express-session');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
@@ -30,6 +31,17 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+// Register the session middleware:
+app.use(
+  session({
+    secret: 'Secret codeword!',
+    // make cookies tied to this session die after one duration
+    cookie: { maxAge: 60000 },
+    // saveUnitialized: false only allocates space when it is needed, not by default
+    saveUninitialized: false
+  })
+);
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);

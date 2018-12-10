@@ -1,0 +1,7 @@
+Cookies:
+  A way to preserve data between separate HTTP requests within a browser-server communication.
+
+  Typically used to hold things like user settings, when should a user automatically be logged out. Tracking for where a user was on the website.
+
+To set a cookie(using express):
+  res.cookie('cookieName', cookieValue);

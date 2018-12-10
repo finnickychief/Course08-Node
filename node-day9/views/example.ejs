@@ -8,10 +8,18 @@
   </head>
   <body>
     <div><p id="cookie"></p></div>
+    <button onClick="clearOurInterval()">Clear Interval</button>
 
     <script>
       document.querySelector('#cookie').innerHTML = document.cookie;
       console.log(document.cookie);
+
+      const interval = setInterval(() => {
+        console.log(document.cookie);
+      }, 1000);
+      function clearOurInterval() {
+        clearInterval(interval);
+      }
     </script>
   </body>
 </html>
