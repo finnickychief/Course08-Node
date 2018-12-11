@@ -8,6 +8,7 @@ const mongoose = require('mongoose');
 
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
+const animalsRouter = require('./routes/animals');
 
 mongoose.connect(
   'mongodb://localhost:27017/test',
@@ -45,6 +46,7 @@ app.use(
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/animals', animalsRouter);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {

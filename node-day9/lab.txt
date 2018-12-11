@@ -1,2 +1,10 @@
 Lab:
-	Create a form to input your favorite animal and save it to cookies. Add this animal both to the database for Animals, and store it as a session cookie for the user that was logged in at the time. Place the link to the animal on the root/home (‘/‘) page for your site. If the animal isn’t set, have it link to the form to create the animal. If it is set, have a button next to it that deletes the cookie.
+	Create a form to input your favorite animal and save it to cookies. 
+  
+  Add this animal both to the database for Animals, and store it as a session cookie for the user that was logged in at the time. 
+  
+  Place the link to the animalForm on the root/home (‘/‘) page for your site. 
+  
+  If the animal isn’t set, have it link to the form to create the animal. 
+  
+  If it is set, have a button next to it that deletes the cookie.

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Signup Page</title>
+    <% include partials/head-tags %>
+  </head>
+  <body>
+    <% include partials/navbar %>
+
+    <div class="container w-50 mt-5 p-4 rounded border border-dark">
+      <h3 class="text-center">Sign Up</h3>
+
+      <form method="POST" action="/animals/createAnimal">
+        <div class="form-group">
+          <label for="englishName">Animal Name</label>
+          <input
+            type="text"
+            class="form-control"
+            id="englishName"
+            placeholder="Enter English Name for animal"
+            name="englishName"
+          />
+        </div>
+        <div class="form-group">
+          <label for="species">Species</label>
+          <input
+            type="text"
+            class="form-control"
+            id="species"
+            placeholder="Enter Species"
+            name="species"
+          />
+        </div>
+        <div class="form-group">
+          <label for="numLegs">Number of Legs</label>
+          <input
+            type="number"
+            class="form-control"
+            id="numLegs"
+            placeholder="Enter Number of legs the animal has"
+            name="numLegs"
+          />
+        </div>
+        <div class="form-group">
+          <label for="habitat">Habitat</label>
+          <input
+            type="text"
+            class="form-control"
+            id="habitat"
+            placeholder="Enter Habitat"
+            name="habitat"
+          />
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+    </div>
+  </body>
+</html>
