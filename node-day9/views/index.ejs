@@ -9,7 +9,31 @@
 
     <h1><%= title %></h1>
     <p>Welcome to <%= title %></p>
+    <div id="animal"></div>
     <img src="./images/dog.jpeg" alt="A pretty dog" />
+
+    <script>
+      function getCookieObj(cookieString) {
+        let split = cookieString.split('; ');
+        return split.reduce((acc, item) => {
+          let splitItem = item.split('=');
+          acc[splitItem[0]] = splitItem[1];
+          return acc;
+        }, {});
+      }
+      const cookieObj = getCookieObj(document.cookie);
+
+      if (cookieObj.animal) {
+        document.getElementById(
+          'animal'
+        ).innerHTML = `<a href="/animals/deleteAnimal">Delete ${
+          cookieObj.animal
+        } cookie</a>`;
+      } else {
+        document.getElementById('animal').innerHTML =
+          '<a href="/animals/createAnimal">Add Animal</a>';
+      }
+    </script>
 
     <% include partials/bootstrap-scripts %>
   </body>

@@ -25,10 +25,11 @@ router.get('/createAnimal', (req, res) => {
 router.post('/createAnimal', (req, res) => {
   AnimalController.createAnimal(req.body)
     .then(result => {
-      res.json({
-        message: 'Successfully added animal!',
-        data: result
-      });
+      // animal=Elephant
+      // document.cookie.animal -> Elephant
+      res.cookie('animal', result.englishName);
+      req.session.animal = result.englishName;
+      res.redirect('/');
     })
     .catch(err => {
       res.status(400).json({
