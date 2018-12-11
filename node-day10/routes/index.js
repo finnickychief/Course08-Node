@@ -20,11 +20,10 @@ router.get('/signup', (req, res) => {
 router.post('/signup', (req, res) => {
   UserController.createUser(req.body)
     .then(user => res.redirect('/'))
-    .catch(err =>
-      res.status(400).render('errorPage', {
-        message: `There was an error in registration, see error: ${err}`
-      })
-    );
+    .catch(err => {
+      req.flash('error_msg', 'That username or password is invalid!');
+      res.redirect('/signup');
+    });
 });
 
 router.get('/signin', (req, res) => {
