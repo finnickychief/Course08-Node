@@ -14,6 +14,9 @@
 
     <script>
       function getCookieObj(cookieString) {
+        // "username=Jeff2; animal=Elephant" becomes
+        // {username: 'Jeff2', animal: 'Elephant'}
+
         let split = cookieString.split('; ');
         return split.reduce((acc, item) => {
           let splitItem = item.split('=');

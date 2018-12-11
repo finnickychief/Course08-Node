@@ -38,11 +38,21 @@ module.exports = {
 
   loginUser: userInfo => {
     return new Promise((resolve, reject) => {
+      if (!userInfo.password || !userInfo.username) {
+        reject({ error: 'Some field is empty' });
+        return;
+      }
       // Check to see if the username is in our database
       User.findOne({ username: userInfo.username }, (err, user) => {
+        console.log(err);
         // If the user was not found, reject the promise
         if (err) {
           reject(err);
+          return;
+        }
+
+        if (!user) {
+          reject();
           return;
         }
 

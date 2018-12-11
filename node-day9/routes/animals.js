@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const AnimalController = require('../controllers/AnimalsController');
+const { checkSignIn } = require('../middleware/auth');
 
 router.get('/getAnimals', (req, res) => {
   AnimalController.getAnimals()
@@ -18,11 +19,11 @@ router.get('/getAnimals', (req, res) => {
     });
 });
 
-router.get('/createAnimal', (req, res) => {
+router.get('/createAnimal', checkSignIn, (req, res) => {
   res.render('animalForm', { signedIn: req.session.username });
 });
 
-router.post('/createAnimal', (req, res) => {
+router.post('/createAnimal', checkSignIn, (req, res) => {
   AnimalController.createAnimal(req.body)
     .then(result => {
       // animal=Elephant
@@ -37,6 +38,12 @@ router.post('/createAnimal', (req, res) => {
         error: data
       });
     });
+});
+
+router.get('/deleteAnimal', (req, res) => {
+  res.clearCookie('animal');
+  req.session.animal = undefined;
+  res.redirect('/');
 });
 
 module.exports = router;

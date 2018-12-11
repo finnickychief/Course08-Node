@@ -3,7 +3,8 @@ module.exports = {
     if (req.session.username) {
       next(); // If they are signed in already; let them go through
     } else {
-      res.render('signin', { failure: true });
+      // Otherwise, redirect them to the sign in page.
+      res.redirect('/signin');
     }
   }
 };
