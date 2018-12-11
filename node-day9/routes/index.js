@@ -7,11 +7,14 @@ const { checkSignIn } = require('../middleware/auth');
 /* GET home page. */
 // With the middleware, you will go to the index page if you're signed in, or the signin page if you are not.
 router.get('/', checkSignIn, (req, res, next) => {
-  res.render('index', { title: 'Express' });
+  res.render('index', { title: 'Express', signedIn: req.session.username });
 });
 
 router.post('/', (req, res) => {
-  res.render('index', { title: req.body.username });
+  res.render('index', {
+    title: req.body.username,
+    signedIn: req.session.username
+  });
 });
 
 router.get('/signup', (req, res) => {
@@ -20,22 +23,22 @@ router.get('/signup', (req, res) => {
 
 router.get('/signin', (req, res) => {
   if (req.session.username) {
-    res.render('index', { title: 'home page' });
+    res.redirect('/');
   } else {
     res.render('signin');
   }
 });
 
-router.get('/destroySignin', (req, res) => {
-  req.session.username = undefined;
-  res.json({ message: 'succesfully cleared user' });
+router.get('/signout', (req, res) => {
+  req.session.destroy();
+  res.redirect('/signin');
 });
 
 router.post('/signin', (req, res) => {
   UserController.loginUser(req.body)
     .then(result => {
       req.session.username = result.username;
-      res.render('index', { title: 'Signed in', signedIn: true });
+      res.redirect('/');
     })
     .catch(err => {
       res.render('signin', { failure: true });

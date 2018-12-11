@@ -5,3 +5,17 @@ Cookies:
 
 To set a cookie(using express):
   res.cookie('cookieName', cookieValue);
+  res.cookie('name', 'Jeff');
+
+To clear a cookie:
+  res.clearCookie('cookieName') // Clears the first cookie
+  res.clearCookie('name') // clears the cookie with name 'Jeff'
+
+
+Session:
+  An additional way to store data between HTTP requests. This does so on the server-side, so whenever the server stops running, you lose all the data that was stored. 
+
+  When using express-session, a session object is tied to the request object and you can refer to them as any sort of key on an object.
+
+  req.session.name = 'Jeff'
+  req.session.role = 'Teacher'

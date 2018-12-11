@@ -37,7 +37,7 @@ app.use(
   session({
     secret: 'Secret codeword!',
     // make cookies tied to this session die after one duration
-    cookie: { maxAge: 60000 },
+    cookie: { maxAge: 600000 },
     // saveUnitialized: false only allocates space when it is needed, not by default
     saveUninitialized: false
   })
