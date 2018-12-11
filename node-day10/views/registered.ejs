@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Successfully registered!</title>
+    <% include partials/head-tags %>
+  </head>
+  <body>
+    <% include partials/navbar %>
+    <div class="container w-50 mt-5">
+      <h1>
+        Succesfully registered! Redirecting you to main page in 5 seconds.
+      </h1>
+    </div>
+
+    <script>
+      setTimeout(() => {
+        window.location.href = '/';
+      }, 5000);
+    </script>
+  </body>
+</html>
