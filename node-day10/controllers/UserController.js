@@ -16,23 +16,14 @@ module.exports = {
   },
   createUser: userObject => {
     return new Promise((resolve, reject) => {
-      const password = userObject.password;
-      // generate a salt
-      bcrypt.genSalt(10, (err, salt) => {
-        // Hash the password using the salt
-        bcrypt.hash(password, salt, (err, hash) => {
-          if (err) {
-            reject(err);
-            return;
-          }
-          // Set the password we want to store
-          userObject.password = hash;
-          // Store the user object
-          User.create(userObject, (err, result) => {
-            err ? reject(err) : resolve(result);
-          });
-        });
-      });
+      // register is a method added to the schema with passport-local-mongoose
+      // this takes in 2 parameters: the first is a user schema, the second is the password
+      User.register(
+        new User({ username: userObject.username }),
+        userObject.password
+      )
+        .then(user => resolve(user))
+        .catch(err => reject(err));
     });
   },
 

@@ -5,7 +5,6 @@ const uniqueValidator = require('mongoose-unique-validator');
 
 const UserSchema = new mongoose.Schema({
   username: { type: String, default: '', required: true, unique: true },
-  password: { type: String, default: '', required: true },
   createdTimeStamp: {
     type: String,
     default: () => moment().format('dddd, MMMM Do YYYY, h:mm:ss a')
