@@ -65,6 +65,10 @@ const passportMiddleware = require('./middleware/passport');
 
 passportMiddleware(passport, LocalStrategy);
 
+const { attachLocals } = require('./middleware/utilities');
+
+app.use(attachLocals);
+
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 

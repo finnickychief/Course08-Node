@@ -3,6 +3,7 @@ const router = express.Router();
 const UserController = require('../controllers/UserController');
 
 const passport = require('passport');
+const isLoggedIn = require('../middleware/checkAuth');
 
 /* GET home page. */
 router.get('/', (req, res, next) => {
@@ -39,10 +40,17 @@ router.post(
       type: 'error_msg',
       message: 'Invalid username or password!'
     }
-  }),
-  (req, res) => {
-    return;
-  }
+  })
 );
+
+router.get('/protected', isLoggedIn, (req, res) => {
+  res.json({ message: `you're allowed here!` });
+});
+
+router.get('/signout', (req, res) => {
+  console.log(req.user);
+  req.logout();
+  res.redirect('/');
+});
 
 module.exports = router;
