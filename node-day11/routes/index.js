@@ -6,9 +6,21 @@ const passport = require('passport');
 const { isLoggedIn, generateToken } = require('../middleware/checkAuth');
 
 /* GET home page. */
-router.get('/', (req, res, next) => {
-  res.render('index', { title: 'Express' });
-});
+router.get(
+  '/',
+  passport.authenticate('jwt', {
+    session: false,
+    failureRedirect: '/signin',
+    failureFlash: {
+      type: 'error_msg',
+      message: 'Please sign in to view this page.'
+    }
+  }),
+  isLoggedIn,
+  (req, res, next) => {
+    res.render('index', { title: 'Express' });
+  }
+);
 
 router.post('/', (req, res) => {
   res.render('index', { title: req.body.username });
@@ -33,14 +45,21 @@ router.get('/signin', (req, res) => {
 
 router.post(
   '/signin',
+  // Perform local authentication
   passport.authenticate('local', {
-    successRedirect: '/', // If successful, go to root page
+    session: false,
     failureRedirect: '/signin', // If it fails, go back to the signin page
     failureFlash: {
       type: 'error_msg',
       message: 'Invalid username or password!'
     }
-  })
+  }),
+  // Set token cookie to jwt authentication
+  generateToken,
+  // Redirect to home page
+  (req, res) => {
+    res.redirect('/');
+  }
 );
 
 // This route will give back a jwt. First it goes to authenticate middleware, then to generateToken, then to our local function with res.json
@@ -72,9 +91,9 @@ router.get('/rejectedjwt', (req, res) => {
 });
 
 router.get('/signout', (req, res) => {
-  console.log(req.user);
-  req.logout();
-  res.redirect('/');
+  // Clear their authentication token
+  res.clearCookie('jwt');
+  res.redirect('/signin');
 });
 
 module.exports = router;
