@@ -44,6 +44,7 @@ router.post(
 );
 
 router.get('/protected', isLoggedIn, (req, res) => {
+  console.log(req.user);
   res.json({ message: `you're allowed here!` });
 });
 
