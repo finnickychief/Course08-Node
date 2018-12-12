@@ -1,0 +1,18 @@
+JWTS - JSON Web Tokens
+  A token that can be used in place of session authorization after signing in.
+
+  These are encrypted tokens that are a way to provide access to different parts of your website/API, and are able to hold pieces of data within them(called a payload) as well.
+
+  Typically you'll see these used within the headers of an HTTP request. We will do this first then switch to using cookie-based tokens
+
+Libraries necessary:
+  passport-jwt - A passport extension that allows you use JWTs as a strategy
+  jsonwebtoken - A library that allows you to create and decode JWTs
+
+
+Flow for the tokens:
+  When the user logs in a token will be generated and returned as a cookie or response.
+
+  The client will save the token locally(either through cookie or localStorage) and needs to send it back to the API whenever it makes a request that requires authorization
+
+  All requests that need authorization will have a middleware attached that checks the token and allows the request only if a valid token was provided

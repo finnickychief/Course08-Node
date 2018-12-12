@@ -1,0 +1,13 @@
+Passport:
+  Passport is an authentication middleware specifically for NodeJS
+  It employs middleware itself called "strategies" - These are the rules for authentication.
+  If we want to use externals ones such as Facebook, Github, Google we can import those strategies, or we can define our own locally.
+
+
+Additional libraries:
+  Passport 
+  passport-local // The library that allows you to define your own strategy to authenticate a user
+  connect-flash // A library to display flash messages to the user
+
+  passport-local-mongoose // Allows us to use our local strategy along with our Mongoose schema - Also provides a few additional utility functions for it.
+  mongoose-unique-validator // handles a few extra edge cases that mongoose doesn't, more efficiently
