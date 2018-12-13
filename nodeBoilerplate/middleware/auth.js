@@ -25,15 +25,21 @@ const authJWT = () => {
   });
 };
 
+const loggedIn = (req, res, next) => {
+  if (req.cookies.jwt) {
+    res.locals.signedIn = true;
+  }
+  next();
+};
+
 const generateToken = (req, res, next) => {
-  const payload = {
-    username: req.user.username
-  };
-  const token = jwt.sign(payload, jsonSecret, {
-    expiresIn: '10m'
-  });
+  const payload = {};
+
+  payload.username = req.body.username;
+
+  const token = jwt.sign(payload, jsonSecret);
   res.cookie('jwt', token);
   next();
 };
 
-module.exports = { generateToken, authLocal, authJWT };
+module.exports = { generateToken, authLocal, authJWT, loggedIn };

@@ -1,0 +1,4 @@
+Tasks:
+  #1: Make sign up/in/out toggle properly
+  #2: Have them automatically logged in after signing up
+  #3: Make sign out work by clearing the token

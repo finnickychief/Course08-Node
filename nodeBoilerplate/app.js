@@ -7,9 +7,11 @@ const mongoose = require('mongoose');
 const session = require('express-session');
 const passport = require('./middleware/passport');
 const flash = require('connect-flash');
+const { loggedIn, authJWT } = require('./middleware/auth');
 
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
+const protectedRouter = require('./routes/protected'); // Example of protecting a route through top-level middleware
 
 mongoose.connect(
   'mongodb://localhost:27017/test',
@@ -59,8 +61,11 @@ const flashMiddleware = (req, res, next) => {
 
 app.use(flashMiddleware);
 
+app.use(loggedIn); // Check for login to set locals vars
+
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/protected', authJWT(), protectedRouter);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {

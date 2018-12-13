@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const UserController = require('../controllers/UserController');
+const { generateToken } = require('../middleware/auth');
 
 router.get('/getUsers', (req, res) => {
   UserController.getUsers(req.query)
@@ -38,17 +39,20 @@ router.get('/:username', (req, res, next) => {
     });
 });
 
-router.post('/createUser', (req, res) => {
-  console.log(req.body);
-  UserController.createUser(req.body)
-    .then(result => {
-      res.render('registered');
-    })
-    .catch(err => {
-      res.status(400).render('signup', {
-        failure: true
+router.post(
+  '/createUser',
+  (req, res, next) => {
+    UserController.createUser(req.body)
+      .then(result => {
+        next();
+      })
+      .catch(err => {
+        req.flash('error_msg', 'Username is already taken');
+        res.status(400).redirect('/signup');
       });
-    });
-});
+  },
+  generateToken,
+  (req, res) => res.render('registered')
+);
 
 module.exports = router;

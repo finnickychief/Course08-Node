@@ -24,4 +24,9 @@ router.post('/signin', authLocal(), generateToken, (req, res) => {
   res.redirect('/');
 });
 
+router.get('/signout', (req, res) => {
+  res.clearCookie('jwt');
+  res.redirect('/signin');
+});
+
 module.exports = router;
