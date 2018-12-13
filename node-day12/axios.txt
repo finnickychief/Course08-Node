@@ -1,0 +1,19 @@
+Axios:
+  An NPM library that is usable on both the backend and front end to provide an easy way to perform HTTP requests.
+
+  npm i axios
+
+  const axios = require('axios');
+
+  axios.get('url')
+  .then(data => {
+    console.log(data);
+  })
+  .catch(err => console.log(err));
+
+  axios.post('/signin', {
+    data: {
+      "username": "jeff",
+      "password": "123"
+    }
+  })
