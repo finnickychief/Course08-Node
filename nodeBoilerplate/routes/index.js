@@ -1,9 +1,10 @@
 const express = require('express');
 const router = express.Router();
 const UserController = require('../controllers/UserController');
+const { authLocal, authJWT, generateToken } = require('../middleware/auth');
 
 /* GET home page. */
-router.get('/', (req, res, next) => {
+router.get('/', authJWT(), (req, res, next) => {
   res.render('index', { title: 'Express' });
 });
 
@@ -19,14 +20,8 @@ router.get('/signin', (req, res) => {
   res.render('signin');
 });
 
-router.post('/signin', (req, res) => {
-  UserController.loginUser(req.body)
-    .then(result => {
-      res.render('index', { title: 'Signed in', signedIn: true });
-    })
-    .catch(err => {
-      res.render('signin', { failure: true });
-    });
+router.post('/signin', authLocal(), generateToken, (req, res) => {
+  res.redirect('/');
 });
 
 module.exports = router;

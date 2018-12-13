@@ -3,6 +3,8 @@ const LocalStrategy = require('passport-local');
 const JWTStrategy = require('passport-jwt').Strategy;
 const UserController = require('../controllers/UserController');
 
+const { jsonSecret } = require('../config/keys');
+
 // The strategy takes in the fields it will look for to authenticate a user, then the method it will authenticate a user with.
 passport.use(
   new LocalStrategy(
@@ -30,10 +32,12 @@ passport.use(
   new JWTStrategy(
     {
       jwtFromRequest: getCookie,
-      secretOrKey: 'super secret json stuff'
+      secretOrKey: jsonSecret
     },
     (jwtPayload, callback) => {
       callback(null, jwtPayload.username);
     }
   )
 );
+
+module.exports = passport;

@@ -10,14 +10,8 @@
     <div class="container w-50 mt-5 p-4 rounded border border-dark">
       <h3 class="text-center">Sign Up</h3>
 
-      <% if(locals.failure){ %>
-      <div class="alert alert-danger">
-        Please try another username, that one is taken.
-      </div>
-      <script>
-        // Replace the url in the window when we come back from /users/createUser
-        history.pushState(null, '', '/signup');
-      </script>
+      <% if(error_msg != false){ %>
+      <div class="alert alert-danger"><%= error_msg %></div>
       <% } %>
 
       <form method="POST" action="/users/createUser">
