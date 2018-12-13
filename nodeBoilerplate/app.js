@@ -4,6 +4,7 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const mongoose = require('mongoose');
+const session = require('express-session');
 
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
@@ -30,6 +31,16 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+app.use(
+  session({
+    secret: 'Secret codeword!',
+    // make cookies tied to this session die after one duration
+    cookie: { maxAge: 600000 },
+    // saveUnitialized: false only allocates space when it is needed, not by default
+    saveUninitialized: false
+  })
+);
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);

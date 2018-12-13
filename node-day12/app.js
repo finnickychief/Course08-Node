@@ -71,9 +71,12 @@ const { attachLocals } = require('./middleware/utilities');
 
 app.use(attachLocals);
 
+const { passportJWT, passportJWT2 } = require('./middleware/checkAuth');
+
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
-app.use('/test', testRouter);
+//app.use('/test', passportJWT(), testRouter);
+app.use('/test', passportJWT2, testRouter);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {

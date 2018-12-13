@@ -3,24 +3,19 @@ const router = express.Router();
 const UserController = require('../controllers/UserController');
 
 const passport = require('passport');
-const { isLoggedIn, generateToken } = require('../middleware/checkAuth');
+const {
+  isLoggedIn,
+  generateToken,
+  passportJWT2
+} = require('../middleware/checkAuth');
 
 /* GET home page. */
-router.get(
-  '/',
-  passport.authenticate('jwt', {
-    session: false,
-    failureRedirect: '/signin',
-    failureFlash: {
-      type: 'error_msg',
-      message: 'Please sign in to view this page.'
-    }
-  }),
-  isLoggedIn,
-  (req, res, next) => {
-    res.render('index', { title: 'Express' });
-  }
-);
+
+const homeRoute = (req, res, next) => {
+  res.render('index', { title: 'Express' });
+};
+
+router.get('/', passportJWT2, isLoggedIn, homeRoute);
 
 router.post('/', (req, res) => {
   res.render('index', { title: req.body.username });

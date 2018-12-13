@@ -1,4 +1,25 @@
 const jwt = require('jsonwebtoken');
+const passport = require('passport');
+
+const passportJWT = () => {
+  return passport.authenticate('jwt', {
+    session: false,
+    failureRedirect: '/signin',
+    failureFlash: {
+      type: 'error_msg',
+      message: 'You must be signed in to view this page.'
+    }
+  });
+};
+
+const passportJWT2 = passport.authenticate('jwt', {
+  session: false,
+  failureRedirect: '/signin',
+  failureFlash: {
+    type: 'error_msg',
+    message: 'You must be signed in to view this page.'
+  }
+});
 
 const isLoggedIn = (req, res, next) => {
   // req.isAuthenticated is a method from passport that validates a user's authorization cookie
@@ -24,4 +45,4 @@ const generateToken = (req, res, next) => {
   next();
 };
 
-module.exports = { isLoggedIn, generateToken };
+module.exports = { isLoggedIn, generateToken, passportJWT, passportJWT2 };
