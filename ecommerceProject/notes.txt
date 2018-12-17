@@ -1,0 +1,89 @@
+Ecommerce Project - 
+  Prepare questions as if you were walking into a first meeting with a client that wants an Ecommerce website - and that is all that you know about them.
+
+  5 - What is the nature of my business
+    - I sell home-made craft products
+
+
+  12 - What is an example of a competing website + what features do you like/dislike about it.
+    - Etsy - I do not like it because they take too much off the sales but I love their brand image
+
+  Edit: Who are your competitors and what do you believe are your advantages over them? 
+
+  Added: Why are you deciding to create a website? 
+  Followup: What are your goals and how will you measure the success of this website?
+
+  7 - Do I have a budget and/or timeframe for this website
+    - We have 3 days, but a good questions
+
+  8 - Who is my target audience?
+    - Right now it's mostly millenials and stay at home moms
+  Added: What sort of perception do you want to project to your users and visitors of the site?
+
+
+  15 - Do you have a current website? - Followup: With who? What are the costs? What are you willing to go up to?
+    - No current website, I run everything through email and facebook currently.
+  Added: Do you have any branding materials or a style guide yet?
+
+  13 - What other services other than strictly web development do you require? SEO, art/design work that needs to be made such as logos, any brand images, photography for products
+    - I have a logo and provide my own photography, but do not know how to optimize for SEO. I also have a process for handling my own shipping, but need to have a way to automatically create labels
+  Be aware of the amount of work you'll to do, and also when you should outsource it. 
+  Examples: Any content writing that needs to be done. Design beyond simple layouts. 
+
+
+
+  3 - What kind of payment platform do I want to use? - and what am I using right now
+    - Right now I'm using paypal and freshbooks, but wants to be able to use a more friendly credit card platform such as stripe
+
+
+  9 - How do I plan to market my site?
+    - I have no plans currently other than continuing updating my facebook page.
+
+
+
+  14 - What are your immediate needs and what do you think would be good to add in the future?
+     - Immediate: storefront, a way to add and update products, a way for users to check out. In the future, email lists, discount codes.
+    Note: Make sure they know what they need right away and what can wait.
+
+
+  18 - How much do you want to be able to control the website through interface options built into the website vs me handling those changes?
+    -  The only things that need to be built in are adding, updating, removing products. The static pages do not need to be modifiable outside of a code editor
+
+
+  17 - How will the customers interact with the website?
+    - I want all the browsing, ordering and payment to be automated and I'd be available to handle any other disputes through email or phone.
+  Added: Browser compatibility - Do they know how a user is most likely to come to their website and interact with the interface
+
+
+
+  1 - Do you want users to be able to log in?
+    - No
+  2 - Am I familiar with a web developer's responsibilities?
+    - You make websites right?
+  4 - How often is the inventory updated?
+    - Whenever I make more
+  6 - Do I currently have any product database?
+    - Only what I've posted on my facebook
+  10 - What information do I want associated with a product?
+    - Price, description, 3-4 photos max, wait time/number available
+  11 - Do you want a shopping cart or do you only handle single orders?
+    - Yes, a shopping cart would be useful since I have a variety of items
+  16 - After the site is made, what are your plans for maintenance and updates?
+    - I was hoping you could host it and I would cover the costs, and we could discuss updates as necessary. 
+  19 - What online stores do you enjoy using or that you like the look of?
+    - I enjoy Amazon, and mizzen&main
+  20 - How much search functionality do you want?
+    - Basic matching
+  21 - How do I want to protect your data?
+    - Our payments handlers will take care of that
+  22 - What should happen after the user completes an order?
+    - User receives confirmation email, I receive an order confirmation and a label along with it. Through my shipping provider, I will provide a tracking number to the user
+  23 - Hosting/Launch - How will you handle deploying the website and keeping it running? Do they have aurl, and need to redirect it? Do they want you to host it and pay you to maintain it or do they want full control over it and you out of the picture.
+
+
+
+
+
+
+
+
