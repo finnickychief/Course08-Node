@@ -82,6 +82,17 @@ Ecommerce Project -
 
 
 
+Site map:
+  Index page(storefront)
+  Cart/checkout page
+  About/faq page
+  Support faq + contact details page
+  Cms/product management sections
+
+
+
+
+
 
 
 
