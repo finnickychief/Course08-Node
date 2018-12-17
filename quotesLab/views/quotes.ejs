@@ -4,7 +4,22 @@
     <% include partials/head-tags %>
   </head>
   <body>
-    <% include partials/navbar %> In quotes view <% include
-    partials/bootstrap-scripts %>
+    <% include partials/navbar %>
+
+    <div class="container w-50">
+      <h1>Quotes Submitted</h1>
+
+      <% for(quote of quotes) { %>
+
+      <div class="bg-light my-1 py-3 px-3">
+        <h4><%= quote.author %></h4>
+        <h5><%= quote.year %></h5>
+        <p><%= quote.text %></p>
+      </div>
+
+      <% } %>
+    </div>
+
+    <% include partials/bootstrap-scripts %>
   </body>
 </html>

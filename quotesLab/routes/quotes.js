@@ -7,11 +7,24 @@ router.get('/', (req, res) => {
   // Get the quotes
   // Send them to quotes.ejs as an array
   // In the view, do a for loop over the array to output a div for each one with the quote, name and year
-  res.render('quotes');
+
+  QuoteController.getQuotes()
+    .then(quotes => {
+      res.render('quotes', { quotes: quotes });
+    })
+    .catch(err => console.log(err));
+
+  // res.render('quotes');
 });
 
 // Retrieve as JSON
-router.get('/getQuotes', (req, res) => {});
+router.get('/getQuotes', (req, res) => {
+  QuoteController.getQuotes()
+    .then(quotes => {
+      res.json({ message: 'Success', data: quotes });
+    })
+    .catch(err => console.log(err));
+});
 
 // Add a quote
 router.post('/addQuote', authJWT(), (req, res) => {
