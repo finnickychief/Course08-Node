@@ -8,22 +8,136 @@
 
 */
 
+body {
+  height: 100vh;
+}
+
 .container {
-  background: #e4e4e4;
 }
 
 header {
   background: #dd1125;
+  display: grid;
+  grid-template-columns: 1fr 9fr;
+  grid-template-areas:
+    'logo store-title'
+    'logo navbar';
+  color: #222;
+}
+
+.navbar {
+  margin: 0;
+  padding: 0;
+}
+
+.navbar-nav {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+
+a {
+  color: #222;
+}
+
+.nav-link {
+  text-transform: uppercase;
+  color: #e4e4e4;
+  font-size: 1.25rem;
+  text-align: center;
+}
+
+.nav-link:hover {
+  color: #dd1125;
+  background: #e4e4e4;
+}
+
+header .logo {
+  height: 100%;
+  width: auto;
+  grid-area: logo;
+}
+
+header .store-title {
+  grid-area: store-title;
+  color: #e4e4e4;
+  text-align: center;
+}
+
+header .store-title h1 {
+  margin-bottom: 0;
+  padding: 0.25rem 0;
+}
+
+header .navbar {
+  grid-area: navbar;
+}
+
+main {
+  border-radius: 10px;
 }
 
 footer {
   background: #f4d35e;
+  height: 5%;
 }
 
 body {
   font: 14px 'Lucida Grande', Helvetica, Arial, sans-serif;
 }
 
-a {
-  color: #00b7ff;
+.about {
+  width: 100%;
+  padding: 1rem;
+  margin: 1rem 0;
+  border-radius: 5px;
+  background: #e4e4e4;
+}
+
+.about-story {
+  display: grid;
+  grid-template-columns: 2fr 3fr;
+  grid-gap: 5px;
+  grid-template-areas:
+    'story-header story-header'
+    'story-img story-description';
+  justify-content: center;
+}
+
+.about-story h1 {
+  text-align: center;
+  grid-area: story-header;
+  font-size: 3rem;
+}
+
+.about-story .img-container {
+  text-align: center;
+  grid-area: story-img;
+}
+
+.about-story .img-container img {
+  width: 90%;
+  height: auto;
+  border-radius: 10px;
+}
+.about-story p {
+  grid-area: story-description;
+}
+
+.about-faq {
+  margin-left: 2%;
+  margin-top: 1rem;
+}
+
+.about-faq h4 {
+  margin-left: 0.5rem;
+}
+
+.about-faq p {
+  margin-left: 1rem;
+}
+
+footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }

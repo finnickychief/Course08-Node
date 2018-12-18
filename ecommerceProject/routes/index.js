@@ -1,6 +1,5 @@
 const express = require('express');
 const router = express.Router();
-const UserController = require('../controllers/UserController');
 const { authLocal, authJWT, generateToken } = require('../middleware/auth');
 
 /* GET home page. */
@@ -10,6 +9,10 @@ router.get('/', authJWT(), (req, res, next) => {
 
 router.post('/', (req, res) => {
   res.render('index', { title: req.body.username });
+});
+
+router.get('/about', (req, res) => {
+  res.render('about');
 });
 
 router.get('/signup', (req, res) => {
