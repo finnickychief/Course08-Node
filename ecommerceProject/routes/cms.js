@@ -3,7 +3,9 @@ const path = require('path');
 
 router.get('/', (req, res) => {});
 
-router.get('/addProduct', (req, res) => {});
+router.get('/addProduct', (req, res) => {
+  res.render('addProductForm');
+});
 
 router.post('/addProduct', (req, res) => {});
 

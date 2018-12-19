@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>About Us</title>
+    <% include partials/head-tags %>
+    <link href="/stylesheets/products.css" rel="stylesheet" />
+  </head>
+  <body>
+    <% include partials/header %>
+    <main class="container d-flex justify-content-center">
+      <form action="/cms/addProduct" class="product-form w-50">
+        <input type="text" name="name" placeholder="Name" />
+        <textarea name="desc" placeholder="Description"></textarea>
+        <input type="number" name="price" placeholder="Price" />
+        <input type="number" name="quantity" placeholder="Quantity" />
+        <input type="file" name="file" />
+        <input type="submit" value="Save Product" />
+      </form>
+    </main>
+    <% include partials/footer %>
+  </body>
+</html>

@@ -1,21 +1,21 @@
 .products {
-    width: 100%;
-    padding: 1rem;
-    margin: 1rem 0;
-    border-radius: 5px;
-    background: #e4e4e4;
-  }
+  width: 100%;
+  padding: 1rem;
+  margin: 1rem 0;
+  border-radius: 5px;
+  background: #e4e4e4;
+}
 
-  .products .product{
-      float:left;
-      width:20%;
-      margin:.5rem;
-      background-color:#CCCCCC;
-  }
+.products .product {
+  float: left;
+  width: 20%;
+  margin: 0.5rem;
+  background-color: #cccccc;
+}
 
-  .products .product img{
-      width:100%;
-  }
+.products .product img {
+  width: 100%;
+}
 
 /*
   <div class="products">
@@ -33,54 +33,52 @@
 
 */
 
+.products-story {
+  display: grid;
+  grid-template-columns: 2fr 3fr;
+  grid-gap: 5px;
+  grid-template-areas:
+    'story-header story-header'
+    'story-img story-description';
+  justify-content: center;
+}
 
+.products-story h1 {
+  color: #000090;
+  text-align: center;
+  grid-area: story-header;
+  font-size: 3rem;
+}
 
+.products-story .img-container {
+  text-align: center;
+  grid-area: story-img;
+}
 
+.products-story .img-container img {
+  width: 90%;
+  height: auto;
+  border-radius: 10px;
+}
+.products-story p {
+  grid-area: story-description;
+}
 
+.products-faq {
+  margin-left: 2%;
+  margin-top: 1rem;
+}
 
-  
-  .products-story {
-    display: grid;
-    grid-template-columns: 2fr 3fr;
-    grid-gap: 5px;
-    grid-template-areas:
-      'story-header story-header'
-      'story-img story-description';
-    justify-content: center;
-  }
-  
-  .products-story h1 {
-    color:#000090;
-    text-align: center;
-    grid-area: story-header;
-    font-size: 3rem;
-  }
-  
-  .products-story .img-container {
-    text-align: center;
-    grid-area: story-img;
-  }
-  
-  .products-story .img-container img {
-    width: 90%;
-    height: auto;
-    border-radius: 10px;
-  }
-  .products-story p {
-    grid-area: story-description;
-  }
-  
-  .products-faq {
-    margin-left: 2%;
-    margin-top: 1rem;
-  }
-  
-  .products-faq h4 {
-    margin-left: 0.5rem;
-    color:#000090;
-  }
-  
-  .products-faq p {
-    margin-left: 1rem;
-  }
-  
+.products-faq h4 {
+  margin-left: 0.5rem;
+  color: #000090;
+}
+
+.products-faq p {
+  margin-left: 1rem;
+}
+
+.product-form {
+  display: flex;
+  flex-direction: column;
+}
