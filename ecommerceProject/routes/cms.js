@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const path = require('path');
+const ProductController = require('../controllers/ProductController');
 
 router.get('/', (req, res) => {});
 
@@ -7,7 +8,15 @@ router.get('/addProduct', (req, res) => {
   res.render('addProductForm');
 });
 
-router.post('/addProduct', (req, res) => {});
+router.post('/addProduct', (req, res) => {
+  ProductController.addProduct(req.files, req.body)
+    .then(result => {
+      res.json({ message: 'successfully added product' });
+    })
+    .catch(err => {
+      res.json({ message: 'error in adding product' });
+    });
+});
 
 router.get('/editProduct', (req, res) => {});
 

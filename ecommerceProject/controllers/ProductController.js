@@ -1,5 +1,5 @@
 const Product = require('../models/Product');
-const formidable = require('formidable');
+const path = require('path');
 
 module.exports = {
   getProduct: id => {
@@ -26,10 +26,33 @@ module.exports = {
         .catch(err => reject(err));
     });
   },
-  addProduct: (file, body) => {
-    // Add a single product
-    // Save the image to the file system
-    // Save the object to the database, with the filepath attached
+  addProduct: (files, body) => {
+    return new Promise((resolve, reject) => {
+      // Add a single product
+      // Save the image to the file system
+      const fileObject = files.file;
+
+      const filePath = path.join(
+        __dirname,
+        '../public/images/productImages/' + fileObject.name
+      );
+
+      fileObject
+        .mv(filePath)
+        .then(result => {
+          // if the file was saved succesfully, also add the product to the database
+          body.filePath = '/images/productImages/' + fileObject.name; // Get the relative filepath for where it WILL be stored relative to public. So where it will be looked for from the browser
+          // Save the object to the database, with the filepath attached
+          Product.create(body)
+            .then(product => {
+              resolve(product);
+            })
+            .catch(err => reject(err));
+        })
+        .catch(err => {
+          reject(err);
+        });
+    });
   },
   updateProduct: (id, body) => {
     // Edit/update a single product
