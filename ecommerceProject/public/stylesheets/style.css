@@ -18,7 +18,7 @@ body {
 header {
   background: #dd1125;
   display: grid;
-  grid-template-columns: 1fr 9fr;
+  grid-template-columns: 2fr 8fr;
   grid-template-areas:
     'logo store-title'
     'logo navbar';

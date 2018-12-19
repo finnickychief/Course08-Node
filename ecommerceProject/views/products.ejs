@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Products Page</title>
+    <% include partials/head-tags %>
+  </head>
+  <body>
+    <% include partials/header %>
+    <link rel="stylesheet" type="text/css" href="../stylesheets/products.css"
+    <main class="container">
+      <div class="products">
+         <% for(let prod of prodData){ %>
+            <div class="product">
+                <label><%=prod.prodName%></label>
+                <img src="../prods/<%=prod.prodImg%>" border="0"/>
+                <label><%=prod.prodPrice%></label>
+                <p><%=prod.prodDesc%></p>
+            </div>
+              
+
+         <% }%>
+      </div> <br/>
+    </main>
+    <% include partials/footer %>
+
+  </body>
+</html>
