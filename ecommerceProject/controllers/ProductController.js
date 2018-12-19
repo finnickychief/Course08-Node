@@ -1,4 +1,5 @@
 const Product = require('../models/Product');
+const formidable = require('formidable');
 
 module.exports = {
   getProduct: id => {
@@ -25,8 +26,10 @@ module.exports = {
         .catch(err => reject(err));
     });
   },
-  addProduct: body => {
+  addProduct: (file, body) => {
     // Add a single product
+    // Save the image to the file system
+    // Save the object to the database, with the filepath attached
   },
   updateProduct: (id, body) => {
     // Edit/update a single product
