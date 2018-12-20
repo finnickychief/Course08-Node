@@ -16,6 +16,11 @@ router.get('/', (req, res) => {
     );
 });
 
+router.post('/checkout', (req, res) => {
+  console.log('in checkout');
+  res.json({ message: '?' });
+});
+
 router.get('/cart', (req, res) => {
   res.render('cart');
 });

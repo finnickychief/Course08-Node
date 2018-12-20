@@ -18,12 +18,10 @@
         <button class="btn btn-danger my-2 btn-sm" onclick="clearCart()">
           Clear Cart
         </button>
-        <form action="/checkout" method="POST" id="stripeBtn">
-          <script src="https://checkout.stripe.com/checkout.js"></script>
-          <button id="paymentButton" class="btn btn-sm btn-primary">
-            Pay with Card
-          </button>
-        </form>
+        <script src="https://checkout.stripe.com/checkout.js"></script>
+        <button id="paymentButton" class="btn btn-sm btn-primary">
+          Pay with Card
+        </button>
       </div>
     </main>
 
@@ -58,6 +56,20 @@
         token: function(token) {
           // You can access the token ID with `token.id`.
           // Get the token ID to your server-side code for use.
+
+          const body = {
+            cart: cart,
+            token: token
+          };
+
+          fetch('/checkout', { method: 'POST', body })
+            .then(resp => resp.json())
+            .then(data => {
+              console.log('Successful checkout!');
+            })
+            .catch(err => {
+              console.log('failed checkout!');
+            });
         }
       });
 
