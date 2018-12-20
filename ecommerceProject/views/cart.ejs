@@ -62,7 +62,15 @@
             token: token
           };
 
-          fetch('/checkout', { method: 'POST', body })
+          console.log(body);
+
+          fetch('/checkout', {
+            method: 'POST',
+            body: JSON.stringify(body),
+            headers: {
+              'Content-Type': 'application/json'
+            }
+          })
             .then(resp => resp.json())
             .then(data => {
               console.log('Successful checkout!');
