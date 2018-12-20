@@ -6,22 +6,53 @@
   </head>
   <body>
     <% include partials/header %>
-    <link rel="stylesheet" type="text/css" href="../stylesheets/products.css"
+    <link rel="stylesheet" type="text/css" href="../stylesheets/products.css" />
     <main class="container">
       <div class="products">
-         <% for(let prod of prodData){ %>
-            <div class="product">
-                <label><%=prod.prodName%></label>
-                <img src="../prods/<%=prod.prodImg%>" border="0"/>
-                <label><%=prod.prodPrice%></label>
-                <p><%=prod.prodDesc%></p>
-            </div>
-              
-
-         <% }%>
-      </div> <br/>
+        <% for(let prod of prodData){ %>
+        <div class="product">
+          <label id="<%=prod._id%>"><%=prod.name%></label>
+          <img src="<%=prod.imgPath%>" border="0" />
+          <label><%=prod.price%></label>
+          <p><%=prod.desc%></p>
+          <button
+            class="btn btn-success float-right"
+            onclick="addToCart('<%=prod._id%>', '<%=prod.name%>', '<%=prod.price%>')"
+          >
+            Add to Cart
+          </button>
+        </div>
+        <% } %>
+      </div>
+      <br />
     </main>
-    <% include partials/footer %>
+    <script>
+      function addToCart(id, name, price) {
+        const cart = JSON.parse(localStorage.getItem('cart'));
 
+        if (cart) {
+          // If the cart already exists, add the new ID to it.
+          for (let i = 0; i < cart.length; i++) {
+            if (cart[i].id === id) {
+              cart[i].count++;
+              localStorage.setItem('cart', JSON.stringify(cart));
+              return; // If we found the item, break out of the function.
+            }
+          }
+
+          // If we haven't found it, add it as a new item
+          cart.push({ id, count: 1, name, price });
+          localStorage.setItem('cart', JSON.stringify(cart));
+        } else {
+          // If the cart does not exist, create a new one and store it in localStorage
+
+          localStorage.setItem(
+            'cart',
+            JSON.stringify([{ id, count: 1, name, price }])
+          );
+        }
+      }
+    </script>
+    <% include partials/footer %>
   </body>
 </html>

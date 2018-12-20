@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title></title>
+    <% include partials/head-tags %>
+  </head>
+  <body>
+    <% include partials/header %>
+
+    <main class="container mx-auto w-50 mx-4 py-4">
+      <div class="panel panel-default">
+        <div class="panel-heading"><h2>Your Items</h2></div>
+        <div class="panel-body">
+          <p>Review your selections here, then select your payment option.</p>
+        </div>
+
+        <ul class="list-group" id="itemList"></ul>
+        <form
+          action="/checkout"
+          class="d-flex justify-content-center pt-3"
+          method="POST"
+        ></form>
+      </div>
+    </main>
+
+    <script>
+      const cart = JSON.parse(localStorage.getItem('cart'));
+      const itemList = document.querySelector('#itemList');
+      if (cart) {
+        for (item of cartItems) {
+          itemList.innerHTML += `<li class="list-group-item">${
+            item.name
+          }: \$${item.price.toFixed(2)}</li>`;
+        }
+      } else {
+        itemList.innerHTML = `<li class="list-group-item">You don't have any items in your cart</li>`;
+      }
+
+      // document.querySelector('main').innerHTML = localStorage.getItem('cart');
+    </script>
+    <% include partials/footer %> <% include partials/bootstrap-scripts %>
+  </body>
+</html>
