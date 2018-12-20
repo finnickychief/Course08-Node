@@ -15,26 +15,63 @@
         </div>
 
         <ul class="list-group" id="itemList"></ul>
-        <form
-          action="/checkout"
-          class="d-flex justify-content-center pt-3"
-          method="POST"
-        ></form>
+        <button class="btn btn-danger my-2 btn-sm" onclick="clearCart()">
+          Clear Cart
+        </button>
+        <form action="/checkout" method="POST" id="stripeBtn">
+          <script src="https://checkout.stripe.com/checkout.js"></script>
+          <button id="paymentButton" class="btn btn-sm btn-primary">
+            Pay with Card
+          </button>
+        </form>
       </div>
     </main>
 
     <script>
+      function clearCart() {
+        localStorage.setItem('cart', null); // Clear the cart out of local storage
+        window.location.href = '/cart'; // Refresh the page
+      }
+      let total = 0;
       const cart = JSON.parse(localStorage.getItem('cart'));
       const itemList = document.querySelector('#itemList');
       if (cart) {
         for (item of cart) {
+          total += item.price * item.count;
           itemList.innerHTML += `<li class="list-group-item">${
             item.name
-          }: \$${Number(item.price).toFixed(2)}</li>`;
+          }: \$${item.price.toFixed(2)}</li>`;
         }
       } else {
         itemList.innerHTML = `<li class="list-group-item">You don't have any items in your cart</li>`;
       }
+
+      var handler = StripeCheckout.configure({
+        key: 'pk_test_exu2eRUoFuEdEbtQk2wpBbLJ',
+        image: 'https://stripe.com/img/documentation/checkout/marketplace.png',
+        locale: 'auto',
+        token: function(token) {
+          // You can access the token ID with `token.id`.
+          // Get the token ID to your server-side code for use.
+        }
+      });
+
+      document
+        .getElementById('paymentButton')
+        .addEventListener('click', function(e) {
+          // Open Checkout with further options:
+          handler.open({
+            name: 'Crafts Checkout',
+            description: 'Thanks for shopping!',
+            amount: total * 100
+          });
+          e.preventDefault();
+        });
+
+      // Close Checkout on page navigation:
+      window.addEventListener('popstate', function() {
+        handler.close();
+      });
 
       // document.querySelector('main').innerHTML = localStorage.getItem('cart');
     </script>
