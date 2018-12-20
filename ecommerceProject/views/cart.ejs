@@ -38,13 +38,18 @@
       if (cart) {
         for (item of cart) {
           total += item.price * item.count;
-          itemList.innerHTML += `<li class="list-group-item">${
-            item.name
-          }: \$${item.price.toFixed(2)}</li>`;
+
+          itemList.innerHTML += `<li class="list-group-item">${item.name} x ${
+            item.count
+          }: \$${(item.count * item.price).toFixed(2)}</li>`;
         }
       } else {
         itemList.innerHTML = `<li class="list-group-item">You don't have any items in your cart</li>`;
       }
+      itemList.innerHTML += `<li class="list-group-item"><span class="float-right">Total: \$${total.toFixed(
+        2
+      )}
+    </span></li>`;
 
       var handler = StripeCheckout.configure({
         key: 'pk_test_exu2eRUoFuEdEbtQk2wpBbLJ',
