@@ -27,10 +27,10 @@
       const cart = JSON.parse(localStorage.getItem('cart'));
       const itemList = document.querySelector('#itemList');
       if (cart) {
-        for (item of cartItems) {
+        for (item of cart) {
           itemList.innerHTML += `<li class="list-group-item">${
             item.name
-          }: \$${item.price.toFixed(2)}</li>`;
+          }: \$${Number(item.price).toFixed(2)}</li>`;
         }
       } else {
         itemList.innerHTML = `<li class="list-group-item">You don't have any items in your cart</li>`;
