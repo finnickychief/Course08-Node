@@ -41,7 +41,7 @@ module.exports = {
         .mv(filePath)
         .then(result => {
           // if the file was saved succesfully, also add the product to the database
-          body.filePath = '/images/productImages/' + fileObject.name; // Get the relative filepath for where it WILL be stored relative to public. So where it will be looked for from the browser
+          body.imgPath = '/images/productImages/' + fileObject.name; // Get the relative filepath for where it WILL be stored relative to public. So where it will be looked for from the browser
           // Save the object to the database, with the filepath attached
           Product.create(body)
             .then(product => {

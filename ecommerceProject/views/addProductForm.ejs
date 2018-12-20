@@ -8,7 +8,12 @@
   <body>
     <% include partials/header %>
     <main class="container d-flex justify-content-center">
-      <form action="/cms/addProduct" class="product-form w-50">
+      <form
+        method="POST"
+        action="/cms/addProduct"
+        class="product-form w-50"
+        enctype="multipart/form-data"
+      >
         <input type="text" name="name" placeholder="Name" />
         <textarea name="desc" placeholder="Description"></textarea>
         <input type="number" name="price" placeholder="Price" />
